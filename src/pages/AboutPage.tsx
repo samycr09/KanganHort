@@ -198,7 +198,7 @@ export function AboutPage() {
             <h3 className="text-gray-900 mb-4">Proudly Partnered With</h3>
             <img 
               src="https://melbflowershow.com.au/wp-content/uploads/2024/09/logo-footer.png" 
-              alt="Melbourne International Flower And Garden Show"
+              alt="Melbourne International Flower And Garden Show."
               className="h-20 object-contain mx-auto mb-4"
             />
             <a

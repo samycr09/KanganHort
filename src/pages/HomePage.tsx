@@ -214,19 +214,7 @@ const currentPlant: PlantView | null = currentPlantBio ? plantBioToView(currentP
                     <span>Learn more about Indigenous Seasons</span>
                     <ChevronDown className="h-4 w-4 rotate-[-90deg]" />
                   </Link>
-                  <div className="mt-4">
-                    <p className="text-white/90 text-sm">
-                      Aboriginal art featured from{' '}
-                      <a 
-                        href="https://www.aboriginal-art-australia.com/" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-amber-200 hover:text-amber-100 underline decoration-amber-300/50 hover:decoration-amber-100"
-                      >
-                        Aboriginal Art Australia
-                      </a>
-                    </p>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -410,7 +398,7 @@ const currentPlant: PlantView | null = currentPlantBio ? plantBioToView(currentP
                   <MapPin className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
                   <span>
                     <strong>Location:</strong><br />
-                    Carlton Gardens & Royal Exhibition Building<br />
+                    Carlton Gardens & <br />Royal Exhibition Building<br />
                     Melbourne, Victoria
                   </span>
                 </p>
@@ -418,7 +406,7 @@ const currentPlant: PlantView | null = currentPlantBio ? plantBioToView(currentP
                   <Calendar className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
                   <span>
                     <strong>When:</strong><br />
-                    Melbourne International Flower and Garden Show<br />
+                    Melbourne International<br /> Flower and Garden Show<br />  March 25th - 29th, 2026<br />
                     (Annual Event)
                   </span>
                 </p>
@@ -441,7 +429,7 @@ const currentPlant: PlantView | null = currentPlantBio ? plantBioToView(currentP
                 <p className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
                   <span>
-                    Multiple campuses across Melbourne<br />
+                    Multiple campuses <br />across Melbourne<br />
                     <Link to="/contact" className="text-green-700 hover:text-green-800 underline">
                       View all locations
                     </Link>
