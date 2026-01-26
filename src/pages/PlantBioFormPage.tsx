@@ -6,6 +6,7 @@ import type { PlantBio } from '../data/PlantData';
 import { addLog } from '../data/LogsData';
 import { Save, AlertCircle, Leaf, QrCode, Download } from 'lucide-react';
 import { BackButton } from '../components/BackButton';
+import PlantPhotos from '../components/PlantPhotos';
 import QRCode from "qrcode";
 
 
@@ -44,7 +45,19 @@ export function PlantBioFormPage() {
     ethnobotanicalInformationUses: '',
     indigenousSeason: indigenousSeasons[0].name,
     images: [] as string[]
+    ,
+    coverImage: '',
+    featured: true
   });
+  const [uploadProgress, setUploadProgress] = useState<Record<number, number>>({});
+
+  const overallUploadProgress = (() => {
+    const vals = Object.values(uploadProgress || {});
+    if (!vals.length) return 0;
+    return Math.round(vals.reduce((a, b) => a + b, 0) / vals.length);
+  })();
+
+  const isUploading = Object.values(uploadProgress || {}).some(p => p > 0 && p < 100);
 
   useEffect(() => {
     if (id) {
@@ -79,7 +92,9 @@ export function PlantBioFormPage() {
           horticulturalLandscapeInfo: plant.horticulturalLandscapeInfo,
           ethnobotanicalInformationUses: plant.ethnobotanicalInformationUses,
           indigenousSeason: plant.indigenousSeason,
-          images: plant.images
+          images: plant.images,
+          coverImage: plant.coverImage ?? '',
+          featured: plant.featured ?? true
         });
 
         if (plant.qrCode) {
@@ -124,13 +139,134 @@ export function PlantBioFormPage() {
     try {
       if (!user) throw new Error('User not authenticated');
 
+      // Helper: upload data-URI images to Cloudinary if configured
+      const uploadImages = async (images: string[]) => {
+        const serverUrl = (import.meta as any).env?.VITE_CLOUDINARY_UPLOAD_SERVER_URL;
+        const results: string[] = [];
+
+        // If server upload URL configured, prefer server-side upload (secure)
+        if (serverUrl) {
+          for (let i = 0; i < images.length; i++) {
+            const img = images[i];
+            if (!img) continue;
+            if (!img.startsWith('data:')) {
+              results.push(img);
+              continue;
+            }
+
+            // Upload via XHR to track progress
+            try {
+              const url = serverUrl;
+              const promise = new Promise<string>((resolve) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', url);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                const secret = (import.meta as any).env?.VITE_UPLOAD_SECRET || '';
+                if (secret) xhr.setRequestHeader('x-upload-secret', secret);
+                xhr.upload.onprogress = (ev) => {
+                  if (ev.lengthComputable) {
+                    const pct = (ev.loaded / ev.total) * 100;
+                    setUploadProgress(prev => ({ ...prev, [i]: pct }));
+                  }
+                };
+                xhr.onload = () => {
+                  try {
+                    const json = JSON.parse(xhr.responseText || '{}');
+                    resolve(json.url || img);
+                  } catch {
+                    resolve(img);
+                  }
+                };
+                xhr.onerror = () => resolve(img);
+                xhr.send(JSON.stringify({ imageData: img }));
+              });
+
+              const uploadedUrl = await promise;
+              results.push(uploadedUrl);
+              setUploadProgress(prev => ({ ...prev, [i]: 100 }));
+            } catch (err) {
+              results.push(img);
+            }
+          }
+          return results;
+        }
+
+        // Fallback to client-side unsigned Cloudinary (only if client preset present)
+        const cloudName = (import.meta as any).env?.VITE_CLOUDINARY_CLOUD_NAME;
+        const uploadPreset = (import.meta as any).env?.VITE_CLOUDINARY_UPLOAD_PRESET;
+
+        if (!cloudName || !uploadPreset) {
+          return images;
+        }
+
+        const uploadUrl = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+
+        for (let i = 0; i < images.length; i++) {
+          const img = images[i];
+          if (!img) continue;
+          if (!img.startsWith('data:')) {
+            results.push(img);
+            continue;
+          }
+
+          try {
+            const blob = await (await fetch(img)).blob();
+            const fd = new FormData();
+            fd.append('file', blob, 'upload.jpg');
+            fd.append('upload_preset', uploadPreset);
+
+            // Use XHR to track progress
+            const uploadedUrl = await new Promise<string>((resolve) => {
+              const xhr = new XMLHttpRequest();
+              xhr.open('POST', uploadUrl);
+              xhr.upload.onprogress = (ev) => {
+                if (ev.lengthComputable) {
+                  const pct = (ev.loaded / ev.total) * 100;
+                  setUploadProgress(prev => ({ ...prev, [i]: pct }));
+                }
+              };
+              xhr.onload = () => {
+                try {
+                  const json = JSON.parse(xhr.responseText || '{}');
+                  resolve(json.secure_url || json.url || img);
+                } catch {
+                  resolve(img);
+                }
+              };
+              xhr.onerror = () => resolve(img);
+              xhr.send(fd);
+            });
+
+            results.push(uploadedUrl);
+            setUploadProgress(prev => ({ ...prev, [i]: 100 }));
+          } catch (err) {
+            results.push(img);
+          }
+        }
+
+        return results;
+      };
+
+      // Upload any data-URI images and replace formData.images with returned URLs
+      const uploadedImages = await uploadImages(formData.images || []);
+      // Auto-select first image as cover if none chosen
+      const selectedCover = formData.coverImage || (uploadedImages.length ? uploadedImages[0] : '');
+
+      // Use uploaded images / cover for saved plant
+      const imagesToSave = uploadedImages;
+
       const plantId = id || `plant-${Date.now()}`;
       const qrCode = await generateQRCode(plantId);
       setQrCodeUrl(qrCode);
 
+      const existingPlant = id ? getPlantById(id) : undefined;
+
       const plant: PlantBio = {
         id: plantId,
         ...formData,
+        images: imagesToSave,
+        coverImage: selectedCover,
+        featured: (user.role === 'admin') ? (!!formData.featured) : (existingPlant?.featured ?? true),
         studentId: user.id,
         studentName: user.name,
         createdAt: id ? getPlantById(id)?.createdAt || new Date().toISOString() : new Date().toISOString(),
@@ -340,6 +476,62 @@ export function PlantBioFormPage() {
                       {indigenousSeasons.find(s => s.name === formData.indigenousSeason)?.description}
                     </p>
                   </div>
+
+                  {/* Photos (students and admins) */}
+                  {(user?.role === 'student' || user?.role === 'admin') && (
+                    <div>
+                      <label className="block text-gray-700 mb-2">Photos</label>
+                      <PlantPhotos
+                        images={formData.images}
+                        onChange={(imgs) => setFormData(prev => ({ ...prev, images: imgs }))}
+                        uploadProgress={uploadProgress}
+                        maxPhotos={5}
+                      />
+                      {formData.images && formData.images.length > 0 && (
+                        <div className="mt-3">
+                          <div className="text-gray-700 mb-2">Choose background image</div>
+                          <div className="flex items-center gap-2">
+                            {formData.images.map((src, i) => (
+                              <button
+                                key={i}
+                                type="button"
+                                onClick={() => setFormData(prev => ({ ...prev, coverImage: src }))}
+                                className={`relative rounded overflow-hidden border ${formData.coverImage === src ? 'ring-2 ring-green-500' : ''}`}
+                              >
+                                <img src={src} alt={`thumb-${i}`} className="w-24 h-16 object-cover" />
+                                <div className="absolute inset-0 flex items-end justify-center p-1 text-xs text-white bg-black bg-opacity-0 hover:bg-opacity-10">
+                                  {formData.coverImage === src ? 'Selected' : 'Set as background'}
+                                </div>
+                              </button>
+                            ))}
+                            {formData.coverImage && (
+                              <button type="button" onClick={() => setFormData(prev => ({ ...prev, coverImage: '' }))} className="px-3 py-2 border rounded text-sm">
+                                Clear
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Admin: Featured toggle */}
+                  {user?.role === 'admin' && (
+                    <div className="mt-4">
+                      <label className="inline-flex items-center gap-3">
+                        <input
+                          id="featured"
+                          name="featured"
+                          type="checkbox"
+                          checked={!!formData.featured}
+                          onChange={(e) => setFormData(prev => ({ ...prev, featured: e.target.checked }))}
+                          className="w-4 h-4"
+                        />
+                        <span className="text-gray-700">Feature this plant on the site</span>
+                      </label>
+                      <p className="text-xs text-gray-500 mt-1">Featured plants appear in the Featured section on plant pages.</p>
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -676,8 +868,20 @@ export function PlantBioFormPage() {
                 disabled={loading}
                 className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-green-700 hover:bg-green-800 disabled:bg-gray-400 text-white rounded-lg transition-colors shadow-md hover:shadow-lg"
               >
-                <Save className="w-5 h-5" />
-                {loading ? 'Saving...' : (id ? 'Update Plant Biography' : 'Create Plant Biography & Generate QR')}
+                {isUploading ? (
+                  <>
+                    <svg className="animate-spin w-5 h-5" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                    </svg>
+                    {`Uploading... ${overallUploadProgress}%`}
+                  </>
+                ) : (
+                  <>
+                    <Save className="w-5 h-5" />
+                    {loading ? 'Saving...' : (id ? 'Update Plant Biography' : 'Create Plant Biography & Generate QR')}
+                  </>
+                )}
               </button>
             </div>
           </form>

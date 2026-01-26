@@ -71,3 +71,32 @@ export default defineConfig([
   },
 ])
 ```
+
+## Cloudinary upload server (secure uploads)
+
+This project includes a minimal Express upload proxy at `server/index.js` which performs server-side uploads to Cloudinary.
+
+Why use it?
+- Keeps Cloudinary API secret off the client.
+- Allows you to require a secret header or validate user sessions before allowing uploads.
+
+Local setup
+1. Copy `.env.example` to `.env` (project root) and `server/.env` for server values, then fill in Cloudinary credentials and a strong `UPLOAD_SECRET`.
+2. Install server dependencies and start the server:
+
+```bash
+cd server
+npm install
+npm start
+```
+
+3. In the frontend root `.env`, set `VITE_CLOUDINARY_UPLOAD_SERVER_URL` to your server (e.g. `http://localhost:4000/upload-image`) and `VITE_UPLOAD_SECRET` to the same secret.
+
+Client behavior
+- If `VITE_CLOUDINARY_UPLOAD_SERVER_URL` is configured, the client will POST image data to that endpoint and use the returned URLs.
+- If not configured, client will fall back to unsigned client-side Cloudinary uploads when `VITE_CLOUDINARY_CLOUD_NAME` and `VITE_CLOUDINARY_UPLOAD_PRESET` are set (less secure).
+
+Security notes
+- Never add `CLOUDINARY_API_SECRET` to frontend environment variables.
+- Use server-side signed uploads for production; the provided server is a simple example and should be hardened for production use.
+

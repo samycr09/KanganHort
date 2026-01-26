@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import { indigenousSeasons } from '../data/PlantData';
 import { addLog } from '../data/LogsData';
-import { Calendar, Leaf } from 'lucide-react';
+import { Leaf } from 'lucide-react';
 import { BackButton } from '../components/BackButton';
 import aboriginalRockArtBg from '../assets/94b1c10d9d5f97e28896476f08bd4873.jpg';
 import aboriginalArtHero from '../assets/9d1b21e14d4bb86b5b42636ac3e785f9.jpg';
@@ -28,7 +27,7 @@ export function SeasonPage() {
             <BackButton to="/" label="Back to Home" className="text-green-100 hover:text-white" />
           </div>
           <div className="text-center">
-            <Calendar className="w-16 h-16 mx-auto mb-4" />
+            
             <h1 className="text-white mb-4">Indigenous Seasons</h1>
             <p className="text-green-100 text-xl max-w-3xl mx-auto">
               Understanding the traditional six seasons of indigenous Australian culture and their connection to native plant life
@@ -73,34 +72,10 @@ export function SeasonPage() {
                 we can better understand plant cycles and create more sustainable growing practices.
               </p>
               <p className="text-gray-700 text-sm">
-                Aboriginal art featured on this page from{" "}
-                <a
-                  href="https://www.aboriginal-art-australia.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-green-700 hover:text-green-900 underline decoration-green-600/50 hover:decoration-green-900"
-                >
-                  Aboriginal Art Australia
-                </a>
+
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Season Cards */}
-        <div className="grid md:grid-cols-2 gap-8 mt-12">
-          {indigenousSeasons.map((season) => (
-            <div
-              key={season.name}
-              className="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-green-600 hover:shadow-xl transition-shadow"
-            >
-              <div className="mb-4">
-                <h3 className="text-green-800 mb-2">{season.name}</h3>
-                <p className="text-gray-600">{season.period}</p>
-              </div>
-              <p className="text-gray-700 leading-relaxed">{season.description}</p>
-            </div>
-          ))}
         </div>
       </div>
     </div>

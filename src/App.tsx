@@ -101,9 +101,9 @@ function App() {
             <Route 
               path="/logs" 
               element={
-                <ProtectedRoute>
+                <AdminRoute>
                   <LogsPage />
-                </ProtectedRoute>
+                </AdminRoute>
               } 
             />
           </Routes>

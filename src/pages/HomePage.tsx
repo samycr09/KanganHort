@@ -4,7 +4,7 @@ import { Leaf, Calendar, Mail, Phone, MapPin, Sprout, QrCode, ChevronDown, Chevr
 import { PlantInfo } from '../components/PlantInfo';
 import { useEffect, useState } from 'react';
 import { addLog } from '../data/LogsData';
-import { demoPlants, indigenousSeasons, plantBioToView } from '../data/PlantData';
+import { demoPlants, indigenousSeasons, plantBioToView, getPlants } from '../data/PlantData';
 import type { PlantView, } from '../data/PlantData';
 
 export function HomePage() {
@@ -17,15 +17,25 @@ export function HomePage() {
     addLog({ action: 'page_view', page: 'home' });
   }, []);
 
+  // Combine stored plants with demoPlants (avoid duplicates) so saved plants appear.
+  const storedPlants = getPlants();
+  const combinedPlants = [
+    ...storedPlants,
+    ...demoPlants.filter(dp => !storedPlants.find(sp => sp.id === dp.id))
+  ];
+
+  // Featured plants should include all plants flagged as featured
+  const featuredPlants = combinedPlants.filter(p => p.featured ?? true);
+
   const handleNextPlant = () => {
-    setCurrentPlantIndex((prev) => (prev + 1) % demoPlants.length);
+    setCurrentPlantIndex((prev) => (prev + 1) % Math.max(1, featuredPlants.length));
   };
 
   const handlePrevPlant = () => {
-    setCurrentPlantIndex((prev) => (prev - 1 + demoPlants.length) % demoPlants.length);
+    setCurrentPlantIndex((prev) => (prev - 1 + Math.max(1, featuredPlants.length)) % Math.max(1, featuredPlants.length));
   };
 
-const currentPlantBio = demoPlants[currentPlantIndex]; // PlantBio
+const currentPlantBio = featuredPlants[currentPlantIndex] ?? demoPlants[0]; // PlantBio
 const currentPlant: PlantView | null = currentPlantBio ? plantBioToView(currentPlantBio) : null;
 {currentPlant && (
   <PlantInfo plant={currentPlant} onReset={() => {}} />
@@ -51,9 +61,7 @@ const currentPlant: PlantView | null = currentPlantBio ? plantBioToView(currentP
             <h1 className="text-5xl mb-4">
               Kangan TAFE Horticulture
             </h1>
-            <p className="text-2xl mb-6 max-w-2xl mx-auto">
-              Melbourne International Flower and Garden Show
-            </p>
+
             <p className="text-lg mb-8 max-w-3xl mx-auto opacity-90">
               Explore our comprehensive plant collection featuring detailed botanical information, 
               indigenous seasonal classifications, and interactive QR codes.
@@ -99,8 +107,8 @@ const currentPlant: PlantView | null = currentPlantBio ? plantBioToView(currentP
                 <ChevronLeft className="h-5 w-5" />
                 <span>Previous</span>
               </button>
-              <span className="text-gray-600">
-                Plant {currentPlantIndex + 1} of {demoPlants.length}
+                <span className="text-gray-600">
+                Plant {currentPlantIndex + 1} of {featuredPlants.length || demoPlants.length}
               </span>
               <button
                 onClick={handleNextPlant}
@@ -353,7 +361,21 @@ const currentPlant: PlantView | null = currentPlantBio ? plantBioToView(currentP
                       <strong className="text-green-900">Location:</strong> Carlton Gardens & Royal Exhibition Building, Melbourne
                     </p>
                     <p className="text-gray-700 mt-2">
-                      <strong className="text-green-900">Event:</strong> Annual showcase of horticultural excellence
+                      <strong className="text-green-900">Event: </strong>{""}
+                      <a
+                      href="https://melbflowershow.com.au/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-green-700 hover:text-green-800 underline"
+                    >
+                       Melbourne International Flower and Garden Show
+                    </a>
+                    </p>
+                    <p className="text-gray-700 mt-2">
+                      <strong className="text-green-900"> Description: </strong>    
+                      
+                      
+                       Annual showcase of horticultural excellence
                     </p>
                   </div>
                 </div>

@@ -41,13 +41,7 @@ export function Navbar() {
                 className="h-12 object-contain"
               />
             </Link>
-            <div className="hidden lg:block border-l-2 border-gray-300 pl-6">
-              <img 
-                src="https://melbflowershow.com.au/wp-content/uploads/2024/09/logo-footer.png" 
-                alt="Melbourne International Flower And Garden Show"
-                className="h-10 object-contain"
-              />
-            </div>
+
           </div>
 
           {/* Desktop Navigation - Positioned to the right with Home centered */}

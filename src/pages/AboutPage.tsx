@@ -14,7 +14,7 @@ export function AboutPage() {
       <div className="bg-green-800 text-white py-16">
         <div className="max-w-5xl mx-auto px-4">
           <div className="mb-6">
-            <BackButton to="/" label="Back to Home" className="text-green-100 hover:text-white" />
+            <BackButton to="/" label="Back to Home" className="font-bold text-yellow-300 hover:text-white" />
           </div>
           <div className="text-center">
             <h1 className="text-white mb-4">About Our MIFGS Participation</h1>
@@ -213,19 +213,43 @@ export function AboutPage() {
 
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
             <h3 className="text-gray-900 mb-4">Delivered By</h3>
-            <img 
-              src="https://www.kangan.edu.au/wp-content/uploads/2019/11/Kangan-Institute-Logo.png"
-              alt="Kangan Institute"
-              className="h-20 object-contain mx-auto mb-4"
-            />
-            <a
-              href="https://www.kangan.edu.au"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-6 py-3 bg-green-700 hover:bg-green-800 text-white rounded-lg transition-colors"
-            >
-              Visit Kangan Website
-            </a>
+            <div className="grid sm:grid-cols-2 gap-6 items-center">
+              <div className="text-center">
+                <img
+                  src="https://bendigokangan.edu.au/content/dam/bendigo-kangan/logo.png"
+                  alt="Bendigo TAFE"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                  className="h-20 object-contain mx-auto mb-3"
+                />
+                <div className="text-gray-800 font-semibold mb-2">Bendigo TAFE</div>
+                <a
+                  href="https://www.bendigokangan.edu.au"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg transition-colors"
+                >
+                  Visit Bendigo TAFE
+                </a>
+              </div>
+
+              <div className="text-center">
+                <img
+                  src="https://www.kangan.edu.au/wp-content/uploads/2019/11/Kangan-Institute-Logo.png"
+                  alt="Kangan Institute - Cremorne"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                  className="h-20 object-contain mx-auto mb-3"
+                />
+                <div className="text-gray-800 font-semibold mb-2">Kangan Institute (Cremorne)</div>
+                <a
+                  href="https://www.kangan.edu.au/campuses/cremorne"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-4 py-2 bg-green-700 hover:bg-green-800 text-white rounded-lg transition-colors"
+                >
+                  Visit Kangan Cremorne
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
