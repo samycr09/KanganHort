@@ -2,9 +2,6 @@ import { Link } from "react-router-dom";
 import {
   Leaf,
   Calendar,
-  Mail,
-  Phone,
-  MapPin,
   Sprout,
   QrCode,
   ChevronDown,
@@ -21,22 +18,19 @@ import type { PlantView } from "../data/PlantData";
 export function HomePage() {
   const [currentPlantIndex, setCurrentPlantIndex] = useState(0);
   const [showSeasons, setShowSeasons] = useState(false);
-  const [showAboutKangan, setShowAboutKangan] = useState(false);
+
   const [showAboutMifgs, setShowAboutMifgs] = useState(false);
 
   useEffect(() => {
     addLog({ action: "page_view", page: "home" });
   }, []);
 
-  // Combine stored plants with demoPlants (avoid duplicates)
   const featuredPlants = useMemo(() => {
     const storedPlants = getPlants();
     const combinedPlants = [
       ...storedPlants,
       ...demoPlants.filter((dp) => !storedPlants.find((sp) => sp.id === dp.id)),
     ];
-
-    // Your existing logic: include all plants flagged as featured (defaults true)
     return combinedPlants.filter((p) => p.featured ?? true);
   }, []);
 
@@ -57,7 +51,6 @@ export function HomePage() {
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
       {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-br from-green-800 via-green-700 to-green-600 text-white py-20">
-        {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center pointer-events-none"
           style={{
@@ -65,15 +58,14 @@ export function HomePage() {
               "url(https://images.unsplash.com/photo-1695376686770-5480909cc1ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600)",
           }}
         />
-        {/* Overlay */}
         <div className="absolute inset-0 bg-green-900/70 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <h1 className="text-5xl mb-4">Kangan TAFE Horticulture</h1>
             <p className="text-lg mb-8 max-w-3xl mx-auto opacity-90">
-              Explore our comprehensive plant collection featuring detailed botanical information, indigenous
-              seasonal classifications, and interactive QR codes.
+              Explore our comprehensive plant collection featuring detailed botanical information, indigenous seasonal
+              classifications, and interactive QR codes.
             </p>
           </div>
         </div>
@@ -176,7 +168,6 @@ export function HomePage() {
                 showSeasons ? "translate-y-0" : "-translate-y-4"
               }`}
             >
-              {/* Background */}
               <div
                 className="absolute inset-0 min-h-full bg-cover bg-center pointer-events-none"
                 style={{
@@ -184,7 +175,6 @@ export function HomePage() {
                     "url(https://i.pinimg.com/originals/98/ee/4b/98ee4b9cd00680a227d5bc67a845bbff.jpg)",
                 }}
               />
-              {/* Overlay */}
               <div className="absolute inset-0 min-h-full bg-gradient-to-br from-amber-900/50 via-orange-900/45 to-red-900/50 backdrop-blur-[1px] pointer-events-none" />
 
               <div className="relative z-10 p-8">
@@ -195,9 +185,7 @@ export function HomePage() {
                       className={`bg-white/50 backdrop-blur-sm p-5 rounded-lg shadow-lg hover:shadow-xl hover:bg-white/85 transition-all duration-300 border-l-4 border-amber-600 transform hover:scale-[1.02] ${
                         showSeasons ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
                       }`}
-                      style={{
-                        transitionDelay: showSeasons ? `${index * 50}ms` : "0ms",
-                      }}
+                      style={{ transitionDelay: showSeasons ? `${index * 50}ms` : "0ms" }}
                     >
                       <div className="mb-3">
                         <h3 className="text-xl text-amber-900 mb-1">{season.name}</h3>
@@ -245,144 +233,6 @@ export function HomePage() {
             </div>
           </div>
         </div>
-
-        {/* About Kangan */}
-        <div className="mb-4">
-          <button
-            onClick={() => setShowAboutKangan((v) => !v)}
-            className="w-full bg-white rounded-lg shadow-md hover:shadow-lg transition-all p-6 flex items-center justify-between group"
-          >
-            <div className="flex items-center gap-4">
-              <Leaf className="h-8 w-8 text-green-700" />
-              <div className="text-left">
-                <h2 className="text-2xl text-green-800">About Kangan TAFE</h2>
-                <p className="text-gray-600">Leading horticulture education in Victoria</p>
-              </div>
-            </div>
-
-            {showAboutKangan ? (
-              <ChevronUp className="h-6 w-6 text-green-700 group-hover:scale-110 transition-transform" />
-            ) : (
-              <ChevronDown className="h-6 w-6 text-green-700 group-hover:scale-110 transition-transform" />
-            )}
-          </button>
-
-          <div
-            className={`bg-gradient-to-br from-green-50 to-green-100 rounded-b-lg shadow-md mt-2 relative overflow-hidden transition-all duration-500 ease-out ${
-              showAboutKangan ? "max-h-[2200px] opacity-100 py-8 px-8" : "max-h-0 opacity-0 py-0 px-8"
-            }`}
-          >
-            <div
-              className={`transition-transform duration-500 ease-out ${
-                showAboutKangan ? "translate-y-0" : "-translate-y-4"
-              }`}
-            >
-              <div className="absolute top-0 right-0 opacity-10 pointer-events-none">
-                <Sprout className="h-48 w-48 text-green-800" />
-              </div>
-              <div className="absolute bottom-0 left-0 opacity-10 pointer-events-none">
-                <Leaf className="h-32 w-32 text-green-800" />
-              </div>
-
-              <div className="relative z-10">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h3 className="text-xl text-green-900 mb-4">Our Horticulture Program</h3>
-                    <p className="text-gray-700 mb-4">
-                      Kangan Institute&apos;s horticulture program is recognized as one of Victoria&apos;s premier training
-                      providers in horticultural education. Our students gain comprehensive knowledge of plant biology,
-                      sustainable practices, and indigenous plant species.
-                    </p>
-
-                    <div className="bg-white/70 backdrop-blur-sm p-4 rounded-lg border-l-4 border-green-600">
-                      <p className="text-green-900">
-                        <strong>Our Focus:</strong> Combining traditional botanical knowledge with indigenous perspectives on
-                        seasonal cycles and plant relationships.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-xl text-green-900 mb-4">Why Choose Kangan?</h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-start gap-3">
-                        <Sprout className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
-                        <span className="text-gray-700">Industry-standard facilities and equipment</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <Sprout className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
-                        <span className="text-gray-700">Experienced instructors with industry connections</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <Sprout className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
-                        <span className="text-gray-700">Hands-on learning with native Australian plants</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <Sprout className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
-                        <span className="text-gray-700">Focus on indigenous seasonal knowledge</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Learn more + course logos */}
-                <div className="text-center mt-6 space-y-6 relative z-10">
-                  <Link
-                    to="/about"
-                    className="inline-flex items-center gap-2 bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition-colors shadow-md"
-                  >
-                    Learn more about Kangan
-                    <ChevronDown className="h-4 w-4 rotate-[-90deg]" />
-                  </Link>
-
-                  <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-                    <h3 className="text-gray-900 mb-4">For More Information on Courses</h3>
-
-                    <div className="grid sm:grid-cols-2 gap-6 items-center">
-                      {/* Bendigo */}
-                      <div className="text-center">
-                        <div className="text-gray-800 font-semibold mb-3">Bendigo TAFE</div>
-                        <a
-                          href="https://www.bendigotafe.edu.au/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-block transition-transform hover:scale-105"
-                          aria-label="Visit Bendigo TAFE"
-                        >
-                          <img
-                            src="https://www.bendigotafe.edu.au/content/experience-fragments/bendigokangan/bendigo/en/header/master/_jcr_content/root/header_copy_copy/logo.coreimg.png/1712189851753/bt-tv-logos-colour-370.png"
-                            alt="Bendigo TAFE"
-                            className="h-14 w-auto object-contain mx-auto"
-                          />
-                        </a>
-                      </div>
-
-                      {/* Kangan Cremorne */}
-                      <div className="text-center">
-                        <div className="text-gray-800 font-semibold mb-3">Kangan Institute (Cremorne)</div>
-                        <a
-                          href="https://www.kangan.edu.au/campuses/cremorne"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-block transition-transform hover:scale-105"
-                          aria-label="Visit Kangan Institute Cremorne"
-                        >
-                          <img
-                            src="https://www.kangan.edu.au/content/experience-fragments/bendigokangan/kangan/en/header/master/_jcr_content/root/header_copy_copy/logo.coreimg.png/1712189728044/ki-tv-logos-colour-370.png"
-                            alt="Kangan Institute"
-                            className="h-14 w-auto object-contain mx-auto"
-                          />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* end learn more + logos */}
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* About MIFGS */}
         <div className="mb-4">
           <button
@@ -479,107 +329,116 @@ export function HomePage() {
             </div>
           </div>
         </div>
+{/* About Kangan */}
+<div className="mb-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-md mt-2 relative overflow-hidden py-8 px-8">
+  <div className="absolute top-0 right-0 opacity-10 pointer-events-none">
+    <Sprout className="h-48 w-48 text-green-800" />
+  </div>
+  <div className="absolute bottom-0 left-0 opacity-10 pointer-events-none">
+    <Leaf className="h-32 w-32 text-green-800" />
+  </div>
+
+  <div className="relative z-10">
+    <div className="grid md:grid-cols-2 gap-8">
+      <div>
+        <h2 className="text-2xl text-green-800 mb-3">About Kangan TAFE</h2>
+        <p className="text-gray-700 mb-4">
+          Kangan Institute&apos;s horticulture program is recognized as one of Victoria&apos;s premier training
+          providers in horticultural education. Our students gain comprehensive knowledge of plant biology,
+          sustainable practices, and indigenous plant species.
+        </p>
+
+        <div className="bg-white/70 backdrop-blur-sm p-4 rounded-lg border-l-4 border-green-600">
+          <p className="text-green-900">
+            <strong>Our Focus:</strong> Combining traditional botanical knowledge with indigenous perspectives
+            on seasonal cycles and plant relationships.
+          </p>
+        </div>
       </div>
 
-      {/* CTA + Contact */}
-      <div className="bg-gradient-to-r from-green-700 to-green-600 text-white py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl mb-4">Join Our Horticulture Program</h2>
-            <p className="text-xl opacity-90">
-              Learn from industry experts and gain hands-on experience with Australia&apos;s diverse flora
-            </p>
+      <div>
+        <h3 className="text-xl text-green-900 mb-4">Why Choose Kangan?</h3>
+        <ul className="space-y-3">
+          <li className="flex items-start gap-3">
+            <Sprout className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
+            <span className="text-gray-700">Industry-standard facilities and equipment</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <Sprout className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
+            <span className="text-gray-700">Experienced instructors with industry connections</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <Sprout className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
+            <span className="text-gray-700">Hands-on learning with native Australian plants</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <Sprout className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
+            <span className="text-gray-700">Focus on indigenous seasonal knowledge</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div className="text-center mt-6 space-y-6">
+      <Link
+        to="/about"
+        className="inline-flex items-center gap-2 bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition-colors shadow-md"
+      >
+        Learn more about Kangan
+        <ChevronDown className="h-4 w-4 rotate-[-90deg]" />
+      </Link>
+
+      <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
+        <h3 className="text-gray-900 mb-4">For More Information on Courses</h3>
+
+        <div className="grid sm:grid-cols-2 gap-6 items-center">
+          <div className="text-center">
+            <div className="text-gray-800 font-semibold mb-3">Bendigo TAFE</div>
+            <a
+              href="https://www.bendigotafe.edu.au/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block transition-transform hover:scale-105"
+              aria-label="Visit Bendigo TAFE"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src="https://www.bendigotafe.edu.au/content/experience-fragments/bendigokangan/bendigo/en/header/master/_jcr_content/root/header_copy_copy/logo.coreimg.png/1712189851753/bt-tv-logos-colour-370.png"
+                alt="Bendigo TAFE"
+                className="h-14 w-auto object-contain mx-auto"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </a>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 items-start">
-            {/* Contact */}
-            <div className="bg-white/10 rounded-2xl p-6">
-              <h3 className="text-xl mb-4">Contact Kangan TAFE</h3>
-
-              <div className="space-y-3 text-white/95">
-                <p className="flex items-center gap-3">
-                  <Phone className="h-5 w-5" />
-                  <span>1300 542 642</span>
-                </p>
-
-                <p className="flex items-center gap-3">
-                  <Mail className="h-5 w-5" />
-                  <span>info@kangan.edu.au</span>
-                </p>
-
-                <p className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 flex-shrink-0 mt-1" />
-                  <span>
-                    Multiple campuses across Melbourne <br />
-                    <Link to="/contact" className="underline hover:text-white">
-                      View all locations
-                    </Link>
-                  </span>
-                </p>
-              </div>
-            </div>
-
-            {/* Delivered by */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 text-center text-gray-900">
-              <h3 className="mb-4">Delivered By</h3>
-
-              <div className="grid sm:grid-cols-2 gap-6 items-center">
-                <div className="text-center">
-                  <div className="text-gray-800 font-semibold mb-3">Bendigo TAFE</div>
-                  <a
-                    href="https://www.bendigotafe.edu.au/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block transition-transform hover:scale-105"
-                    aria-label="Visit Bendigo TAFE"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <img
-                      src="https://www.bendigotafe.edu.au/content/experience-fragments/bendigokangan/bendigo/en/header/master/_jcr_content/root/header_copy_copy/logo.coreimg.png/1712189851753/bt-tv-logos-colour-370.png"
-                      alt="Bendigo TAFE"
-                      className="h-14 w-auto object-contain mx-auto"
-                      onClick={(e) => e.stopPropagation()}
-                    />
-                  </a>
-                </div>
-
-                <div className="text-center">
-                  <div className="text-gray-800 font-semibold mb-3">Kangan Institute (Cremorne)</div>
-                  <a
-                    href="https://www.kangan.edu.au/campuses/cremorne"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block transition-transform hover:scale-105"
-                    aria-label="Visit Kangan Institute Cremorne"
-                  >
-                    <img
-                      src="https://www.kangan.edu.au/content/experience-fragments/bendigokangan/kangan/en/header/master/_jcr_content/root/header_copy_copy/logo.coreimg.png/1712189728044/ki-tv-logos-colour-370.png"
-                      alt="Kangan Institute"
-                      className="h-14 w-auto object-contain mx-auto"
-                    />
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap justify-center gap-4 mt-8">
-                <Link
-                  to="/about"
-                  className="bg-green-700 text-white px-8 py-3 rounded-lg hover:bg-green-800 transition-colors"
-                >
-                  Learn More
-                </Link>
-                <Link
-                  to="/contact"
-                  className="bg-gray-900 text-white px-8 py-3 rounded-lg hover:bg-black transition-colors"
-                >
-                  Contact Us
-                </Link>
-              </div>
-            </div>
+          <div className="text-center">
+            <div className="text-gray-800 font-semibold mb-3">Kangan Institute (Cremorne)</div>
+            <a
+              href="https://www.kangan.edu.au/campuses/cremorne"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block transition-transform hover:scale-105"
+              aria-label="Visit Kangan Institute Cremorne"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src="https://www.kangan.edu.au/content/experience-fragments/bendigokangan/kangan/en/header/master/_jcr_content/root/header_copy_copy/logo.coreimg.png/1712189728044/ki-tv-logos-colour-370.png"
+                alt="Kangan Institute"
+                className="h-14 w-auto object-contain mx-auto"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </a>
           </div>
         </div>
       </div>
-      {/* end CTA */}
+    </div>
+  </div>
+</div>
+
+
+      </div>
+
+
     </div>
   );
 }

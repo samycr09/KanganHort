@@ -28,7 +28,7 @@ export function SeasonPage() {
           </div>
           <div className="text-center">
             
-            <h1 className="text-white mb-4">Indigenous Seasons</h1>
+            <h1 className="text-white text-5xl mb-4">Indigenous Seasons</h1>
             <p className="text-green-100 text-xl max-w-3xl mx-auto">
               Understanding the traditional six seasons of indigenous Australian culture and their connection to native plant life
             </p>
@@ -46,17 +46,15 @@ export function SeasonPage() {
             style={{ backgroundImage: `url(${aboriginalRockArtBg})` }}
           />
           {/* Semi-transparent overlay for readability */}
-          <div className="absolute inset-0 bg-white/75 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-white/55 backdrop-blur-[1px]" />
 
           {/* Content */}
           <div className="relative">
             <div className="flex items-start gap-4 mb-6">
-              <div className="p-3 bg-green-100/90 rounded-lg backdrop-blur-sm">
-                <Leaf className="w-8 h-8 text-green-700" />
-              </div>
+              
               <div>
-                <h2 className="text-green-800 mb-3">The Six Seasons</h2>
-                <p className="text-gray-900 leading-relaxed mb-4">
+                <h2 className="text-green-700 font-medium mb-3">The Six Seasons</h2>
+                <p className="text-gray-900 font-medium leading-relaxed mb-4">
                   Indigenous Australians traditionally recognize six seasons based on the Noongar calendar from Western Australia.
                   Each season is characterized by distinctive weather patterns, plant behaviors, and natural phenomena.
                   Understanding these seasons helps us better appreciate and care for native Australian plants.
@@ -65,13 +63,13 @@ export function SeasonPage() {
             </div>
 
             <div className="mt-6 pt-6 border-t border-green-200">
-              <h2 className="text-green-800 mb-4">Learning from Indigenous Knowledge</h2>
-              <p className="text-gray-700 mb-6">
+              <h2 className="text-green-700 font-medium mb-4">Learning from Indigenous Knowledge</h2>
+              <p className="text-gray-900 font-medium mb-6">
                 These seasonal classifications represent thousands of years of careful observation and deep understanding
                 of the Australian landscape. By learning and applying this traditional knowledge in horticulture,
                 we can better understand plant cycles and create more sustainable growing practices.
               </p>
-              <p className="text-gray-700 text-sm">
+              <p className="text-gray-00 text-sm">
 
               </p>
             </div>
