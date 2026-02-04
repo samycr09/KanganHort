@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { Navbar } from '././components/Navbar';
+import ScrollToTop from "./components/ScrollToTop";
 import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
@@ -14,6 +15,7 @@ import { ContactPage } from './pages/ContactPage';
 import { AboutPage } from './pages/AboutPage';
 import { UserProfilePage } from './pages/UserProfilePage';
 import { LogsPage } from './pages/LogsPage';
+
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
@@ -43,6 +45,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        <ScrollToTop />
         <div className="min-h-screen bg-gray-50">
           <Navbar />
           <Routes>
@@ -101,9 +104,9 @@ function App() {
             <Route 
               path="/logs" 
               element={
-                <ProtectedRoute>
+                <AdminRoute>
                   <LogsPage />
-                </ProtectedRoute>
+                </AdminRoute>
               } 
             />
           </Routes>

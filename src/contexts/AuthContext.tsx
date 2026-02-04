@@ -22,15 +22,19 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  // Initialize user synchronously from localStorage to avoid auth race during routing
+  const [user, setUser] = useState<User | null>(() => {
+    try {
+      const stored = localStorage.getItem('currentUser');
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
 
-  // Check for existing session on mount and initialize demo data
+  // Initialize demo data on mount
   useEffect(() => {
     initializeDemoData();
-    const storedUser = localStorage.getItem('currentUser');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
   }, []);
 
   const login = async (email: string, password: string) => {

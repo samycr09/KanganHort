@@ -35,6 +35,8 @@ export interface PlantBio {
   ethnobotanicalInformationUses: string;
   indigenousSeason: string;
   images: string[];
+  coverImage?: string;
+  featured?: boolean;
   studentId: string;
   studentName: string;
   createdAt: string;

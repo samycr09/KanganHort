@@ -2,7 +2,13 @@ import { useEffect } from 'react';
 import { addLog } from '../data/LogsData';
 import { Award, Users, Leaf, QrCode, Camera, BookOpen } from 'lucide-react';
 import { BackButton } from '../components/BackButton';
+import {
+  Mail,
+  Phone,
+  MapPin,
 
+} from "lucide-react";
+import { Link } from "react-router-dom";
 export function AboutPage() {
   useEffect(() => {
     addLog({ action: 'page_view', page: 'about' });
@@ -14,7 +20,7 @@ export function AboutPage() {
       <div className="bg-green-800 text-white py-16">
         <div className="max-w-5xl mx-auto px-4">
           <div className="mb-6">
-            <BackButton to="/" label="Back to Home" className="text-green-100 hover:text-white" />
+            <BackButton to="/" label="Back to Home" className="font-bold text-yellow-300 hover:text-white" />
           </div>
           <div className="text-center">
             <h1 className="text-white mb-4">About Our MIFGS Participation</h1>
@@ -191,43 +197,106 @@ export function AboutPage() {
             <div>• Urban Greening Projects</div>
           </div>
         </div>
-
-        {/* MIFGUS Logos */}
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-            <h3 className="text-gray-900 mb-4">Proudly Partnered With</h3>
-            <img 
-              src="https://melbflowershow.com.au/wp-content/uploads/2024/09/logo-footer.png" 
-              alt="Melbourne International Flower And Garden Show."
-              className="h-20 object-contain mx-auto mb-4"
-            />
-            <a
-              href="https://melbflowershow.com.au"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-6 py-3 bg-purple-700 hover:bg-purple-800 text-white rounded-lg transition-colors"
-            >
-              Visit MIFGS Website
-            </a>
+              {/* CTA + Contact */}
+      <div className="bg-gradient-to-r from-green-700 to-green-600 text-white py-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl mb-4">Join Our Horticulture Program</h2>
+            <p className="text-xl opacity-90">
+              Learn from industry experts and gain hands-on experience with Australia&apos;s diverse flora
+            </p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-            <h3 className="text-gray-900 mb-4">Delivered By</h3>
-            <img 
-              src="https://www.kangan.edu.au/wp-content/uploads/2019/11/Kangan-Institute-Logo.png"
-              alt="Kangan Institute"
-              className="h-20 object-contain mx-auto mb-4"
-            />
-            <a
-              href="https://www.kangan.edu.au"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-6 py-3 bg-green-700 hover:bg-green-800 text-white rounded-lg transition-colors"
-            >
-              Visit Kangan Website
-            </a>
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            <div className="bg-white/10 rounded-2xl p-6">
+              <h3 className="text-xl mb-4">Contact Kangan TAFE</h3>
+
+              <div className="space-y-3 text-white/95">
+                <p className="flex items-center gap-3">
+                  <Phone className="h-5 w-5" />
+                  <span>1300 542 642</span>
+                </p>
+
+                <p className="flex items-center gap-3">
+                  <Mail className="h-5 w-5" />
+                  <span>info@kangan.edu.au</span>
+                </p>
+
+                <p className="flex items-start gap-3">
+                  <MapPin className="h-5 w-5 flex-shrink-0 mt-1" />
+                  <span>
+                    Multiple campuses across Melbourne <br />
+                    <Link to="/contact" className="underline hover:text-white">
+                      View all locations
+                    </Link>
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl shadow-lg p-8 text-center text-gray-900">
+              <h3 className="mb-4">Delivered By</h3>
+
+              <div className="grid sm:grid-cols-2 gap-6 items-center">
+                <div className="text-center">
+                  <div className="text-gray-800 font-semibold mb-3">Bendigo TAFE</div>
+                  <a
+                    href="https://www.bendigotafe.edu.au/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block transition-transform hover:scale-105"
+                    aria-label="Visit Bendigo TAFE"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <img
+                      src="https://www.bendigotafe.edu.au/content/experience-fragments/bendigokangan/bendigo/en/header/master/_jcr_content/root/header_copy_copy/logo.coreimg.png/1712189851753/bt-tv-logos-colour-370.png"
+                      alt="Bendigo TAFE"
+                      className="h-14 w-auto object-contain mx-auto"
+                      onClick={(e) => e.stopPropagation()}
+                    />
+                  </a>
+                </div>
+
+                <div className="text-center">
+                  <div className="text-gray-800 font-semibold mb-3">Kangan Institute (Cremorne)</div>
+                  <a
+                    href="https://www.kangan.edu.au/campuses/cremorne"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block transition-transform hover:scale-105"
+                    aria-label="Visit Kangan Institute Cremorne"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <img
+                      src="https://www.kangan.edu.au/content/experience-fragments/bendigokangan/kangan/en/header/master/_jcr_content/root/header_copy_copy/logo.coreimg.png/1712189728044/ki-tv-logos-colour-370.png"
+                      alt="Kangan Institute"
+                      className="h-14 w-auto object-contain mx-auto"
+                      onClick={(e) => e.stopPropagation()}
+                    />
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-4 mt-8">
+                <Link
+                  to="/about"
+                  className="bg-green-700 text-white px-8 py-3 rounded-lg hover:bg-green-800 transition-colors"
+                >
+                  Learn More
+                </Link>
+                <Link
+                  to="/contact"
+                  className="bg-gray-900 text-white px-8 py-3 rounded-lg hover:bg-black transition-colors"
+                >
+                  Contact Us
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+      {/* end CTA */}
+
       </div>
     </div>
   );

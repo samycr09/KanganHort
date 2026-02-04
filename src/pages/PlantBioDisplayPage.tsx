@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getPlantById, indigenousSeasons } from '../data/PlantData';
+import { useParams, Link } from 'react-router-dom';
+import { getPlantById, getPlants, indigenousSeasons } from '../data/PlantData';
 import type { PlantBio } from '../data/PlantData';
 import { addLog } from '../data/LogsData';
 import { Leaf, Calendar, User, AlertCircle, Flower, Sprout, BookOpen, Globe } from 'lucide-react';
@@ -55,6 +55,17 @@ export function PlantBioDisplayPage() {
 
   const season = indigenousSeasons.find(s => s.name === plant.indigenousSeason);
 
+  // Featured plants (exclude current)
+  const featuredPlants = getPlants().filter(p => p.featured).filter(p => p.id !== plant.id).slice(0, 6);
+
+  const heroSrc = plant.coverImage && plant.coverImage.length > 0
+    ? plant.coverImage
+    : (plant.images && plant.images.length > 0 ? plant.images[0] : undefined);
+
+  const identifyingBg = (plant.images && plant.images.length > 1)
+    ? plant.images.find(s => s !== (heroSrc ?? ''))
+    : undefined;
+
   const InfoSection = ({ title, content, icon }: { title: string; content: string; icon: React.ReactNode }) => {
     if (!content) return null;
     return (
@@ -84,15 +95,15 @@ export function PlantBioDisplayPage() {
     <div className="min-h-[calc(100vh-5rem)] bg-gradient-to-b from-green-50 to-white">
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-green-800 to-green-700 text-white py-16 overflow-hidden">
-        {/* Background Image - if plant has images, use the first one */}
-        {plant.images && plant.images.length > 0 && (
+        {/* Background Image - use chosen coverImage if present, otherwise first image */}
+        {heroSrc && (
           <>
-            <div 
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${plant.images[0]})` }}
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-50"
+              style={{ backgroundImage: `url(${heroSrc})` }}
             />
-            {/* Very light overlay for better image visibility */}
-            <div className="absolute inset-0 bg-green-900/20" />
+            {/* Darker semi-transparent overlay for readability (keeps image subtle) */}
+            <div className="absolute inset-0 bg-green-900/40" />
           </>
         )}
         
@@ -106,6 +117,11 @@ export function PlantBioDisplayPage() {
             </div>
             <div className="flex-1">
               <h1 className="text-white mb-3">{plant.commonName}</h1>
+              {plant.featured && (
+                <div className="inline-block mt-2">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-400 text-yellow-900 text-sm font-semibold">Featured</span>
+                </div>
+              )}
               <p className="text-green-100 italic text-2xl mb-4">{plant.botanicalName}</p>
               <div className="flex items-center gap-3">
                 <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-lg text-green-50">
@@ -119,6 +135,38 @@ export function PlantBioDisplayPage() {
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-12">
+        {/* Featured Plants */}
+        {featuredPlants && featuredPlants.length > 0 && (
+          <div className="mb-8">
+            <h3 className="text-gray-900 mb-3">Featured Plants</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+              {featuredPlants.map(fp => (
+                <Link key={fp.id} to={`/plant/${fp.id}`} className="block text-center group">
+                  <div className="w-full h-20 bg-gray-100 rounded-lg overflow-hidden mb-2">
+                    <img src={fp.images?.[0] ?? ''} alt={fp.commonName} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                  </div>
+                  <div className="text-sm text-gray-700">{fp.commonName}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+        {/* Photo Gallery */}
+        {plant.images && plant.images.length > 0 && (
+          <div className="mb-8">
+            <h3 className="text-gray-900 mb-3">Photos</h3>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {(() => {
+                const imagesToShow = (plant.images && plant.images.length > 1)
+                  ? plant.images.filter((s) => s !== (heroSrc ?? ''))
+                  : plant.images;
+                return imagesToShow.map((src, i) => (
+                  <img key={i} src={src} alt={`${plant.commonName}-photo-${i}`} className="w-full h-48 object-cover rounded-lg" />
+                ));
+              })()}
+            </div>
+          </div>
+        )}
         <div className="grid gap-8">
           {/* Indigenous Season - Prominent Display */}
           {season && (
@@ -155,39 +203,47 @@ export function PlantBioDisplayPage() {
           )}
 
           {/* Identifying Characteristics */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <div className="flex items-center gap-3 mb-6">
-              <Flower className="w-7 h-7 text-green-700" />
-              <h2 className="text-green-800">Identifying Characteristics</h2>
-            </div>
-            <div className="space-y-6">
-              <InfoField label="General Identifying Characteristics" content={plant.identifyingCharacteristics} />
-              <InfoField label="Leaves, Stems and Meristems" content={plant.leavesStemsMemristems} />
-              
-              <div className="grid md:grid-cols-2 gap-6 pt-4">
-                <InfoField label="Flowers" content={plant.flowers} />
-                <InfoField label="Flowering Time/Season" content={plant.floweringTimeSeason} />
+          <div className="relative rounded-2xl shadow-lg p-8 overflow-hidden">
+            {identifyingBg && (
+              <>
+                <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${identifyingBg})` }} />
+                <div className="absolute inset-0 bg-white/40 pointer-events-none" />
+              </>
+            )}
+            <div className="relative z-10 bg-white/0 p-0">
+              <div className="flex items-center gap-3 mb-6">
+                <Flower className="w-7 h-7 text-green-700" />
+                <h2 className="text-green-800">Identifying Characteristics</h2>
               </div>
+              <div className="space-y-6">
+                <InfoField label="General Identifying Characteristics" content={plant.identifyingCharacteristics} />
+                <InfoField label="Leaves, Stems and Meristems" content={plant.leavesStemsMemristems} />
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <InfoField label="Fruit / Seed" content={plant.fruitSeed} />
-                <InfoField label="Seed Collection Time/Season" content={plant.seedCollectionTimeSeason} />
+                <div className="grid md:grid-cols-2 gap-6 pt-4">
+                  <InfoField label="Flowers" content={plant.flowers} />
+                  <InfoField label="Flowering Time/Season" content={plant.floweringTimeSeason} />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <InfoField label="Fruit / Seed" content={plant.fruitSeed} />
+                  <InfoField label="Seed Collection Time/Season" content={plant.seedCollectionTimeSeason} />
+                </div>
+
+                <InfoField label="Additional Propagation Requirements" content={plant.additionalPropagationRequirements} />
+
+                <div className="grid md:grid-cols-3 gap-6 pt-4">
+                  <InfoField label="Trunk" content={plant.trunk} />
+                  <InfoField label="Root System" content={plant.rootSystem} />
+                  <InfoField label="Vascular System" content={plant.vascularSystem} />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6 pt-4">
+                  <InfoField label="Spotting Characteristics" content={plant.spottingCharacteristics} />
+                  <InfoField label="Family Level" content={plant.familyLevel} />
+                </div>
+
+                <InfoField label="Additional Information" content={plant.additionalInformation} />
               </div>
-
-              <InfoField label="Additional Propagation Requirements" content={plant.additionalPropagationRequirements} />
-
-              <div className="grid md:grid-cols-3 gap-6 pt-4">
-                <InfoField label="Trunk" content={plant.trunk} />
-                <InfoField label="Root System" content={plant.rootSystem} />
-                <InfoField label="Vascular System" content={plant.vascularSystem} />
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6 pt-4">
-                <InfoField label="Spotting Characteristics" content={plant.spottingCharacteristics} />
-                <InfoField label="Family Level" content={plant.familyLevel} />
-              </div>
-
-              <InfoField label="Additional Information" content={plant.additionalInformation} />
             </div>
           </div>
 

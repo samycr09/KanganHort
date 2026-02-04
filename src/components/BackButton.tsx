@@ -21,7 +21,7 @@ export function BackButton({ to, label = 'Back', className = '' }: BackButtonPro
   return (
     <button
       onClick={handleClick}
-      className={`inline-flex items-center gap-2 text-green-900 hover:text-gray-900 transition-colors ${className}`}
+      className={`inline-flex items-center gap-2 font text-orange-300 hover:text-gray-900 opacity-90 hover:opacity-100 transition-colors transition-opacity ${className}`}
     >
       <ArrowLeft className="w-5 h-5" />
       {label}
