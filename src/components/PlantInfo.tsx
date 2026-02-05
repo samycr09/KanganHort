@@ -1,7 +1,7 @@
 import type { PlantView } from '../data/PlantData';
 
 import { ArrowLeft, Leaf, Flower, Circle, TreePine, Sprout } from 'lucide-react';
-import type { PlantBio as Plant } from '../data/PlantData';
+
 
 interface PlantInfoProps {
   plant: PlantView;

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { addLog } from '../data/LogsData';
-import { Leaf } from 'lucide-react';
 import { BackButton } from '../components/BackButton';
 import aboriginalRockArtBg from '../assets/94b1c10d9d5f97e28896476f08bd4873.jpg';
 import aboriginalArtHero from '../assets/9d1b21e14d4bb86b5b42636ac3e785f9.jpg';
