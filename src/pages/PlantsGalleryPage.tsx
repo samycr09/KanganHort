@@ -1,20 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getPlants} from '../data/PlantData';
-import type { PlantBio } from '../data/PlantData';
+import { getPlants } from '../data/PlantData';
 import { addLog } from '../data/LogsData';
 import { Leaf, Search, Calendar } from 'lucide-react';
 import { BackButton } from '../components/BackButton';
 
 export function PlantsGalleryPage() {
-  const [plants, setPlants] = useState<PlantBio[]>([]);
+  const plants = useMemo(() => getPlants(), []);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSeason, setSelectedSeason] = useState<string>('all');
 
   useEffect(() => {
-    const allPlants = getPlants();
-    setPlants(allPlants);
-
     addLog({ 
       action: 'page_view', 
       page: 'plants_gallery'

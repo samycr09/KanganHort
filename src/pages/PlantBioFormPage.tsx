@@ -7,7 +7,7 @@ import { addLog } from '../data/LogsData';
 import { Save, AlertCircle, Leaf, QrCode, Download } from 'lucide-react';
 import { BackButton } from '../components/BackButton';
 import PlantPhotos from '../components/PlantPhotos';
-import QRCode from "qrcode";
+import QRCode from 'qrcode';
 
 
 
@@ -19,6 +19,7 @@ export function PlantBioFormPage() {
   const [error, setError] = useState('');
   const [qrCodeUrl, setQrCodeUrl] = useState('');
   const [activeTab, setActiveTab] = useState<'basic' | 'identifying' | 'cultural' | 'qr'>('basic');
+
 
   const [formData, setFormData] = useState({
     family: '',
@@ -117,6 +118,18 @@ export function PlantBioFormPage() {
       [e.target.name]: e.target.value
     }));
   };
+
+  const downloadQRCode = () => {
+    if (!qrCodeUrl) return;
+
+    const link = document.createElement('a');
+    link.download = `${formData.commonName.replace(/\s+/g, '_')}_QRCode.png`;
+    link.href = qrCodeUrl;
+    link.click();
+  };
+
+
+
 
   const generateQRCode = async (plantId: string) => {
     const url = `${window.location.origin}/plant/${plantId}`;
@@ -293,22 +306,7 @@ export function PlantBioFormPage() {
     }
   };
 
-  const downloadQRCode = () => {
-    if (!qrCodeUrl) return;
-    
-    const link = document.createElement('a');
-    link.download = `${formData.commonName.replace(/\s+/g, '_')}_QRCode.png`;
-    link.href = qrCodeUrl;
-    link.click();
-
-    addLog({ 
-      action: 'qr_downloaded', 
-      page: 'plant_form',
-      userId: user?.id,
-      userName: user?.name,
-      plantName: formData.commonName
-    });
-  };
+  ;
 
   const tabs = [
     { id: 'basic' as const, label: 'Basic Information' },
