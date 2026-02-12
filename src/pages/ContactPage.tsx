@@ -253,27 +253,7 @@ export function ContactPage() {
           </div>
         </div>
 
-        {/* MIFGS Section */}
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl shadow-lg p-8 text-center">
-          <img 
-            src="https://melbflowershow.com.au/wp-content/uploads/2024/09/logo-footer.png" 
-            alt="Melbourne International Flower And Garden Show"
-            className="h-20 object-contain mx-auto mb-6"
-          />
-          <h2 className="text-gray-900 mb-4">Visit Us at MIFGUS</h2>
-          <p className="text-gray-700 max-w-2xl mx-auto leading-relaxed">
-            See our students' work showcased at the Melbourne International Flower and Garden Show. 
-            Scan QR codes at our display to learn more about the native plants we're growing and studying.
-          </p>
-          <a
-            href="https://melbflowershow.com.au"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block mt-6 px-6 py-3 bg-purple-700 hover:bg-purple-800 text-white rounded-lg transition-colors"
-          >
-            Learn More About MIFGUS
-          </a>
-        </div>
+      
       </div>
     </div>
   );
