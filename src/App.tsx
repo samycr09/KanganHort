@@ -10,7 +10,6 @@ import { DashboardPage } from './pages/DashboardPage';
 import { PlantBioFormPage } from './pages/PlantBioFormPage';
 import { PlantBioDisplayPage } from './pages/PlantBioDisplayPage';
 import { PlantsGalleryPage } from './pages/PlantsGalleryPage';
-import { SeasonPage } from './pages/SeasonPage';
 import { ContactPage } from './pages/ContactPage';
 import { AboutPage } from './pages/AboutPage';
 import { UserProfilePage } from './pages/UserProfilePage';
@@ -52,7 +51,6 @@ function App() {
             {/* Public routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/plants" element={<PlantsGalleryPage />} />
-            <Route path="/seasons" element={<SeasonPage />} />
             <Route path="/plant/:id" element={<PlantBioDisplayPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/about" element={<AboutPage />} />

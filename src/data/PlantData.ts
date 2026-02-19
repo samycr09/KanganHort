@@ -117,60 +117,52 @@ export function plantBioToView(p: PlantBio): PlantView {
 
 export const indigenousSeasons: IndigenousSeason[] = [
   {
-    name: 'Biderap',
-    period: 'January - February',
-    description: 'Hot Dry Season, low rainfall, Tussock grasses long and dry, southern cross high in the sky',
-    weather: 'Hot and dry with minimal rainfall, high temperatures',
-    plantIndicators: 'Tussock grasses are long and dry, many plants conserving energy',
-    animalBehavior: 'Animals seek shade and water sources during hottest parts of day'
+    name: 'Birak',
+    period: 'December - January',
+    description: 'Hot and dry, often with strong winds. Traditional fire/cool burning season to care for Country.',
+    weather: 'Hot, dry, and windy; occasional heat spikes',
+    plantIndicators: 'Dry grasses; many plants harden off; summer flowering begins',
+    animalBehavior: 'Increased insect activity; reptiles active; many animals seek shade and water'
+  },
+{
+    name: 'Bunuru',
+    period: 'February - March',
+    description: 'The hottest and driest time. Waterways and wetlands are vital places of life.',
+    weather: 'Hottest period; very dry; heatwaves more likely',
+    plantIndicators: 'Plants conserve moisture; seed heads and dry grasses common',
+    animalBehavior: 'Animals stay close to water; birds concentrate around wetlands'
   },
   {
-    name: 'Luk',
-    period: 'March',
-    description: 'Change in season, Eels fat for harvest, Manna gum flowers and bark peels, Canopus is due south in the sunset sky',
-    weather: 'Transitional weather, cooling temperatures signal seasonal change',
-    plantIndicators: 'Manna gum flowers bloom and bark begins to peel',
-    animalBehavior: 'Eels are fat and ready for harvest, preparing for cooler months'
+    name: 'Djeran',
+    period: 'April - May',
+    description: 'Cooling season. Leaves start to change and fall; mornings become crisp; some rains return.',
+    weather: 'Cooler days and nights; increasing rainfall and dew',
+    plantIndicators: 'Autumn colour; fungi appear; some native plants set seed',
+    animalBehavior: 'Bird movements shift; animals prepare for colder months'
   },
   {
-    name: 'Waring',
-    period: 'April - July',
-    description: 'Cool Season misty/frosty mornings, Wombat emerge to bask and graze, Tree fern hearts are a staple food source',
-    weather: 'Cool season with misty and frosty mornings, lower temperatures',
-    plantIndicators: 'Tree fern hearts are edible, many plants dormant or slow-growing',
-    animalBehavior: 'Wombats emerge to bask in weak sun and graze, reduced activity'
+    name: 'Makuru',
+    period: 'June - July',
+    description: 'Cold and wet. Strong winds, rain, and frosts are common; waterways flow strongly.',
+    weather: 'Coldest and wettest period; frosts and cold winds',
+    plantIndicators: 'Slower plant growth; mosses and fungi thrive in damp areas',
+    animalBehavior: 'Lower activity for many species; some birds shelter and forage closer to cover'
   },
   {
-    name: 'Guling',
-    period: 'August',
-    description: 'The end of the coldest weather, Wattles flower, caterpillars common, Orchid Season, Koalas begin their mating bellows at night',
-    weather: 'End of coldest weather, temperatures begin to rise',
-    plantIndicators: 'Wattles burst into golden flower, orchids emerge, new growth appears',
-    animalBehavior: 'Caterpillars abundant, koalas begin mating calls at night, wildlife becomes more active'
+    name: 'Djilba',
+    period: 'August - September',
+    description: 'Early spring / “season of change”. Warm days can be mixed with cold snaps and rain.',
+    weather: 'Unpredictable; alternating sun, rain, and cold snaps',
+    plantIndicators: 'Wattles begin flowering; new shoots appear; early orchids may emerge',
+    animalBehavior: 'More nesting activity; insects begin to return; frogs become more active after rain'
   },
   {
-    name: 'Poorneet',
-    period: 'September - October',
-    description: 'Days and night are equal, Myrnong and other tuber plants are ready for harvest, Tadpole Season and Flax-lilies are in flower',
-    weather: 'Balanced day and night length, spring weather with gentle warming',
-    plantIndicators: 'Myrnong tubers ready for harvest, flax-lilies flowering abundantly',
-    animalBehavior: 'Tadpole season begins, frogs breeding, increased bird activity'
-  },
-  {
-    name: 'Buarth Gurru',
-    period: 'November',
-    description: 'Weather is warmer, Bats & Butterflies are active, Grass Flowering Season, Orion constellation is setting in the western sky',
-    weather: 'Warmer weather, longer days, increasingly dry',
-    plantIndicators: 'Grasses flowering, many plants in full bloom',
-    animalBehavior: 'Bats and butterflies very active, pollination at peak'
-  },
-  {
-    name: 'Garrawang',
-    period: 'December',
-    description: 'Thunder/changeable weather, Bunjil breeding, Kangaroo-Apple Season',
-    weather: 'Thunderstorms and changeable weather, building heat and humidity',
-    plantIndicators: 'Kangaroo-apple fruiting, summer fruits ripening',
-    animalBehavior: 'Bunjil (wedge-tailed eagle) breeding season, increased wildlife breeding'
+    name: 'Kambarang',
+    period: 'October - November',
+    description: 'Late spring. Warmer weather settles in; many plants flower and country feels “alive”.',
+    weather: 'Warming and generally drier; longer sunny days',
+    plantIndicators: 'Wildflowers and grasses in bloom; new growth strong across many species',
+    animalBehavior: 'High pollinator activity (bees, butterflies); nesting and breeding increases'
   }
 ];
 
