@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Menu, X, LogOut, User, Home, Info, Phone, Calendar } from 'lucide-react';
+import { Menu, X, LogOut, User, Home, Info, Phone, } from 'lucide-react';
 import { useState } from 'react';
 
 export function Navbar() {
@@ -12,7 +12,6 @@ export function Navbar() {
 
   const publicLinks = [
     { path: '/', label: 'Home', icon: Home },
-    { path: '/seasons', label: 'Indigenous Seasons', icon: Calendar },
     { path: '/about', label: 'About', icon: Info },
     { path: '/contact', label: 'Contact', icon: Phone }
   ];
@@ -31,7 +30,7 @@ export function Navbar() {
         style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1707009538768-2542134437bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmFzcyUyMGZsb3dlcnMlMjBiYWNrZ3JvdW5kfGVufDF8fHx8MTc2NTI0OTEyMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral)' }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex items-center justify-between h-24">
+        <div className="flex flex-wrap items-center justify-around h-24">
           {/* Logo Section */}
           <div className="flex items-center gap-6 flex-shrink-0">
             <Link to="/" className="flex-shrink-0 hover:opacity-80 transition-opacity">
@@ -43,7 +42,16 @@ export function Navbar() {
             </Link>
 
           </div>
+          <div className="flex items-center gap-6 flex-shrink-0">
+            <Link to="/" className="flex-shrink-0 hover:opacity-80 transition-opacity">
+              <img 
+                src="https://www.bendigotafe.edu.au/content/experience-fragments/bendigokangan/bendigo/en/header/master/_jcr_content/root/header_copy_copy/logo.coreimg.png/1712189851753/bt-tv-logos-colour-370.png"
+                alt="Bendigo TAFE"
+                className="h-12 object-contain"
+              />
+            </Link>
 
+          </div>
           {/* Desktop Navigation - Positioned to the right with Home centered */}
           <div className="hidden md:flex items-center gap-3 flex-1 justify-end mr-8">
             {publicLinks.map(link => {
@@ -51,7 +59,6 @@ export function Navbar() {
               // Add custom spacing for each item
               let customMargin = '';
               if (link.path === '/') customMargin = 'ml-5';
-              if (link.path === '/seasons') customMargin = 'ml-4';
               if (link.path === '/about') customMargin = 'ml-3';
               if (link.path === '/contact') customMargin = 'ml-2';
               
