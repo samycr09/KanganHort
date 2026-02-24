@@ -292,7 +292,7 @@ export function PlantBioDisplayPage() {
             <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-gray-200">
               <div>
                 <div className="text-gray-600">Institution</div>
-                <div className="text-gray-900">Kangan Institute Horticulture</div>
+                <div className="text-gray-900">Bendigo Tafe Horticulture</div>
               </div>
               <div>
                 <div className="text-gray-600">Last Updated</div>
@@ -301,16 +301,16 @@ export function PlantBioDisplayPage() {
             </div>
           </div>
 
-          {/* MIFGUS Info */}
+          {/* MIFGS Info */}
           <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl shadow-lg p-8 text-center border border-purple-200">
             <img 
               src="https://melbflowershow.com.au/wp-content/uploads/2024/09/logo-footer.png" 
               alt="Melbourne International Flower And Garden Show"
               className="h-20 object-contain mx-auto mb-6"
             />
-            <h3 className="text-gray-900 mb-3">Part of MIFGUS Display</h3>
+            <h3 className="text-gray-900 mb-3">Part of MIFGS Display</h3>
             <p className="text-gray-700 max-w-2xl mx-auto">
-              This plant is part of the Kangan Institute display at the Melbourne International Flower and Garden Show. 
+              This plant is part of the Bendigo Tafe display at the Melbourne International Flower and Garden Show. 
               Students have carefully cultivated and documented these specimens as part of their horticultural education.
             </p>
           </div>

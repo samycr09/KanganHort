@@ -19,8 +19,19 @@ export function ContactPage() {
           <div className="text-center">
             <h1 className="text-white mb-4">Contact Us</h1>
             <p className="text-green-100 text-xl">
-              Get in touch with Kangan Institute Horticulture Department
+              Get in touch with Bendigo Tafe Horticulture Department
             </p>
+                          {/* BUTTON LINK */}
+              <div className="mt-6">
+                <a
+                  href="https://www.bendigotafe.edu.au/courses/department/animals--plants-and-sciences/certificate-iii-in-horticulture-17029"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-white text-green-700 font-semibold px-6 py-3 rounded-lg shadow hover:bg-green-100 transition"
+                >
+                  View Certificate III in Horticulture
+                </a>
+              </div>
           </div>
         </div>
       </div>
@@ -41,10 +52,10 @@ export function ContactPage() {
                 <div>
                   <div className="text-gray-600 mb-1">Phone</div>
                   <a 
-                    href="tel:+61392797777" 
+                    href="tel:+61 13 8233" 
                     className="text-gray-900 hover:text-green-700 transition-colors"
                   >
-                    (03) 9279 7777
+                    13 TAFE (13 8233)
                   </a>
                 </div>
               </div>
@@ -56,10 +67,10 @@ export function ContactPage() {
                 <div>
                   <div className="text-gray-600 mb-1">Email</div>
                   <a 
-                    href="mailto:info@kangan.edu.au" 
+                    href="mailto:admissions@bendigotafe.edu.au" 
                     className="text-gray-900 hover:text-green-700 transition-colors break-all"
                   >
-                    info@kangan.edu.au
+                    admissions@bendigotafe.edu.au 
                   </a>
                 </div>
               </div>
@@ -71,12 +82,12 @@ export function ContactPage() {
                 <div>
                   <div className="text-gray-600 mb-1">Website</div>
                   <a 
-                    href="https://www.kangan.edu.au" 
+                    href="https://www.bendigotafe.edu.au/" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-900 hover:text-green-700 transition-colors"
                   >
-                    www.kangan.edu.au
+                    www.bendigotafe.edu.au
                   </a>
                 </div>
               </div>
@@ -221,32 +232,33 @@ export function ContactPage() {
               <h3 className="text-gray-900 mb-3">Connect With Us</h3>
               <p className="text-gray-700 leading-relaxed mb-4">
                 Follow our social media channels to stay updated on student projects, 
-                upcoming events, and participation in shows like MIFGUS.
+                upcoming events, and participation in shows like MIFGS.
               </p>
               <div className="space-y-3">
                 <a 
-                  href="https://www.facebook.com/KanganInstitute" 
+                  href="https://www.facebook.com/BendigoTAFEonline" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-green-700 hover:text-green-800 transition-colors"
                 >
-                  Facebook: @KanganInstitute
+                  Facebook: Bendigo TAFE
                 </a>
                 <a 
-                  href="https://www.instagram.com/kangan_institute" 
+                  href="https://www.instagram.com/bendigo.tafe" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-green-700 hover:text-green-800 transition-colors"
                 >
-                  Instagram: @kangan_institute
+                  Instagram: @bendigo.tafe
                 </a>
                 <a 
-                  href="https://www.linkedin.com/school/kangan-institute" 
+                 
+                  href="https://au.linkedin.com/company/bendigo-regional-institute-of-tafe"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-green-700 hover:text-green-800 transition-colors"
                 >
-                  LinkedIn: Kangan Institute
+                  LinkedIn: Bendigo TAFE
                 </a>
               </div>
             </div>
