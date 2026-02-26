@@ -334,7 +334,7 @@ export function PlantBioFormPage() {
               </h1>
             </div>
             <p className="text-green-50">
-              Complete plant documentation for MIFGUS display
+              Complete plant documentation for MIFGS display
             </p>
           </div>
 
@@ -836,7 +836,7 @@ export function PlantBioFormPage() {
                         </div>
                       </div>
                       <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
-                        This QR code will link visitors at MIFGUS directly to your plant's complete biography. 
+                        This QR code will link visitors at MIFGS directly to your plant's complete biography. 
                         Print and display it alongside your plant!
                       </p>
                     </div>

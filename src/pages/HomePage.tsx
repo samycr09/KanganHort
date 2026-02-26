@@ -14,15 +14,14 @@ import { PlantInfo } from "../components/PlantInfo";
 import { addLog } from "../data/LogsData";
 import { demoPlants, indigenousSeasons, plantBioToView, getPlants } from "../data/PlantData";
 import type { PlantView } from "../data/PlantData";
-import { BackButton } from '../components/BackButton';
-import aboriginalRockArtBg from '../assets/94b1c10d9d5f97e28896476f08bd4873.jpg';
-import aboriginalArtHero from '../assets/9d1b21e14d4bb86b5b42636ac3e785f9.jpg';
-
+import aboriginalRockArtBg from "../assets/94b1c10d9d5f97e28896476f08bd4873.jpg";
 
 export function HomePage() {
   const [currentPlantIndex, setCurrentPlantIndex] = useState(0);
-  const [showSeasons, setShowSeasons] = useState(false);
 
+  // Dropdowns
+  const [showSeasons, setShowSeasons] = useState(false);       // Indigenous Seasonal Classifications
+  const [showSixSeasons, setShowSixSeasons] = useState(false); // The Six Seasons (new)
   const [showAboutMifgs, setShowAboutMifgs] = useState(false);
 
   useEffect(() => {
@@ -66,7 +65,7 @@ export function HomePage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <h1 className="text-5xl mb-4">Kangan TAFE Horticulture</h1>
+            <h1 className="text-5xl mb-4">Bendigo TAFE Horticulture</h1>
             <p className="text-lg mb-8 max-w-3xl mx-auto opacity-90">
               Explore our comprehensive plant collection featuring detailed botanical information, indigenous seasonal
               classifications, and interactive QR codes.
@@ -223,77 +222,72 @@ export function HomePage() {
                     </div>
                   ))}
                 </div>
-
-    <div className="min-h-[calc(100vh-5rem)] bg-gradient-to-b from-green-50 to-white">
-      {/* Hero */}
-      <div className="relative bg-green-800 text-white py-16 overflow-hidden">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${aboriginalArtHero})` }}
-        />
-        {/* Subtle dark overlay for text readability only */}
-        <div className="absolute inset-0 bg-black/30" />
-
-        <div className="relative max-w-5xl mx-auto px-4">
-          <div className="mb-6">
-            <BackButton to="/" label="Back to Home" className="text-green-100 hover:text-white" />
-          </div>
-          <div className="text-center">
-            
-            <h1 className="text-white text-5xl mb-4">Indigenous Seasons</h1>
-            <p className="text-green-100 text-xl max-w-3xl mx-auto">
-              Understanding the traditional six seasons of indigenous Australian culture and their connection to native plant life
-            </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="max-w-5xl mx-auto px-4 py-12">
-        {/* Introduction */}
-        <div className="relative rounded-2xl shadow-lg p-8 mb-12 overflow-hidden">
-          {/* Background Image */}
+        {/* The Six Seasons (MATCHES Indigenous Seasonal Classifications styling) */}
+        <div className="mb-4 group">
+          <button
+            onClick={() => setShowSixSeasons((v) => !v)}
+            className="w-full bg-white rounded-lg shadow-md hover:shadow-lg transition-all p-6 flex items-center justify-between"
+          >
+            <div className="flex items-center gap-4">
+              <Leaf className="h-8 w-8 text-green-700" />
+              <div className="text-left">
+                <h2 className="text-2xl text-green-800">The Six Seasons</h2>
+                <p className="text-gray-600">Wurundjeri seasonal knowledge from the Kulin Nation area</p>
+              </div>
+            </div>
+
+            {showSixSeasons ? (
+              <ChevronUp className="h-6 w-6 text-green-700 group-hover:scale-110 transition-transform" />
+            ) : (
+              <ChevronDown className="h-6 w-6 text-green-700 group-hover:scale-110 transition-transform" />
+            )}
+          </button>
+
           <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${aboriginalRockArtBg})` }}
-          />
-          {/* Semi-transparent overlay for readability */}
-          <div className="absolute inset-0 bg-white/55 backdrop-blur-[1px]" />
+            className={`relative rounded-b-lg shadow-md mt-2 overflow-hidden transition-all duration-500 ease-out ${
+              showSixSeasons ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+            }`}
+          >
+            {/* Background Image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center pointer-events-none transition-opacity duration-300 group-hover:opacity-75"
+              style={{ backgroundImage: `url(${aboriginalRockArtBg})` }}
+            />
 
-          {/* Content */}
-          <div className="relative">
-            <div className="flex items-start gap-4 mb-6">
-              
-              <div>
-                <h2 className="text-green-700 font-medium mb-3">The Six Seasons</h2>
-                <p className="text-gray-900 font-medium leading-relaxed mb-4">
-                  Indigenous Australians traditionally recognize six seasons based on the Wurundjeri calendar,used by the Kulin Nation of Melbourne area.
-                  Each season is characterized by distinctive weather patterns, plant behaviors, and natural phenomena. An example of this is the Kangaroo Paw flowering, which aligns with specific seasonal markers — not just “September”.
-                  Understanding these seasons helps us better appreciate and care for native Australian plants.
+            {/* Overlay that becomes STRONGER on hover (readability boost) */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/75 via-white/70 to-white/75 backdrop-blur-[1px] transition-all duration-300 group-hover:from-white/92 group-hover:via-white/88 group-hover:to-white/92" />
+
+            {/* Content */}
+            <div className="relative z-10 p-8">
+              <h3 className="text-xl text-green-900 mb-3">The Six Seasons</h3>
+              <p className="text-gray-900 font-medium leading-relaxed mb-4">
+                Indigenous Australians traditionally recognise seasons based on local Country and long-term observation.
+                In the Melbourne area, Wurundjeri (Kulin Nation) seasonal knowledge describes shifts in weather patterns,
+                plant behaviours, and natural events — not just months on a Western calendar.
+              </p>
+
+              <p className="text-gray-900 font-medium leading-relaxed">
+                For example, Kangaroo Paw flowering can align with specific seasonal markers. Understanding these seasons
+                helps us better appreciate and care for native Australian plants and support more sustainable practices.
+              </p>
+
+              <div className="mt-6 pt-6 border-t border-green-200">
+                <h3 className="text-xl text-green-900 mb-3">Learning from Indigenous Knowledge</h3>
+                <p className="text-gray-800 leading-relaxed">
+                  These seasonal classifications represent thousands of years of careful observation and deep
+                  understanding of the Australian landscape. By learning and applying this knowledge in horticulture,
+                  we can better understand plant cycles and create more sustainable growing practices.
                 </p>
               </div>
             </div>
-
-            <div className="mt-6 pt-6 border-t border-green-200">
-              <h2 className="text-green-700 font-medium mb-4">Learning from Indigenous Knowledge</h2>
-              <p className="text-gray-900 font-medium mb-6">
-                These seasonal classifications represent thousands of years of careful observation and deep understanding
-                of the Australian landscape. By learning and applying this traditional knowledge in horticulture,
-                we can better understand plant cycles and create more sustainable growing practices.
-              </p>
-              <p className="text-gray-00 text-sm">
-
-              </p>
-            </div>
           </div>
         </div>
-      </div>
-    </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
         {/* About MIFGS */}
         <div className="mb-4">
           <button
@@ -361,7 +355,7 @@ export function HomePage() {
                 <div>
                   <h3 className="text-xl text-green-900 mb-4">Interactive QR Experience</h3>
                   <p className="text-gray-700 mb-4">
-                    At the show, visitors can scan QR codes placed on plants throughout the Kangan TAFE display to access
+                    At the show, visitors can scan QR codes placed on plants throughout the Bendigo TAFE display to access
                     comprehensive botanical information, including indigenous seasonal data and cultural significance.
                   </p>
 
@@ -390,116 +384,8 @@ export function HomePage() {
             </div>
           </div>
         </div>
-{/* About Kangan */}
-<div className="mb-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-md mt-2 relative overflow-hidden py-8 px-8">
-  <div className="absolute top-0 right-0 opacity-10 pointer-events-none">
-    <Sprout className="h-48 w-48 text-green-800" />
-  </div>
-  <div className="absolute bottom-0 left-0 opacity-10 pointer-events-none">
-    <Leaf className="h-32 w-32 text-green-800" />
-  </div>
-
-  <div className="relative z-10">
-    <div className="grid md:grid-cols-2 gap-8">
-      <div>
-        <h2 className="text-2xl text-green-800 mb-3">About Kangan TAFE</h2>
-        <p className="text-gray-700 mb-4">
-          Kangan Institute&apos;s horticulture program is recognized as one of Victoria&apos;s premier training
-          providers in horticultural education. Our students gain comprehensive knowledge of plant biology,
-          sustainable practices, and indigenous plant species.
-        </p>
-
-        <div className="bg-white/70 backdrop-blur-sm p-4 rounded-lg border-l-4 border-green-600">
-          <p className="text-green-900">
-            <strong>Our Focus:</strong> Combining traditional botanical knowledge with indigenous perspectives
-            on seasonal cycles and plant relationships.
-          </p>
-        </div>
-      </div>
-
-      <div>
-        <h3 className="text-xl text-green-900 mb-4">Why Choose Kangan?</h3>
-        <ul className="space-y-3">
-          <li className="flex items-start gap-3">
-            <Sprout className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
-            <span className="text-gray-700">Industry-standard facilities and equipment</span>
-          </li>
-          <li className="flex items-start gap-3">
-            <Sprout className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
-            <span className="text-gray-700">Experienced instructors with industry connections</span>
-          </li>
-          <li className="flex items-start gap-3">
-            <Sprout className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
-            <span className="text-gray-700">Hands-on learning with native Australian plants</span>
-          </li>
-          <li className="flex items-start gap-3">
-            <Sprout className="h-5 w-5 text-green-700 flex-shrink-0 mt-1" />
-            <span className="text-gray-700">Focus on indigenous seasonal knowledge</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div className="text-center mt-6 space-y-6">
-      <Link
-        to="/about"
-        className="inline-flex items-center gap-2 bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition-colors shadow-md"
-      >
-        Learn more about Kangan
-        <ChevronDown className="h-4 w-4 rotate-[-90deg]" />
-      </Link>
-
-      <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-        <h3 className="text-gray-900 mb-4">For More Information on Courses</h3>
-
-        <div className="grid sm:grid-cols-2 gap-6 items-center">
-          <div className="text-center">
-            <div className="text-gray-800 font-semibold mb-3">Bendigo TAFE</div>
-            <a
-              href="https://www.bendigotafe.edu.au/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block transition-transform hover:scale-105"
-              aria-label="Visit Bendigo TAFE"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src="https://www.bendigotafe.edu.au/content/experience-fragments/bendigokangan/bendigo/en/header/master/_jcr_content/root/header_copy_copy/logo.coreimg.png/1712189851753/bt-tv-logos-colour-370.png"
-                alt="Bendigo TAFE"
-                className="h-14 w-auto object-contain mx-auto"
-                onClick={(e) => e.stopPropagation()}
-              />
-            </a>
-          </div>
-
-          <div className="text-center">
-            <div className="text-gray-800 font-semibold mb-3">Kangan Institute (Cremorne)</div>
-            <a
-              href="https://www.kangan.edu.au/campuses/cremorne"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block transition-transform hover:scale-105"
-              aria-label="Visit Kangan Institute Cremorne"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src="https://www.kangan.edu.au/content/experience-fragments/bendigokangan/kangan/en/header/master/_jcr_content/root/header_copy_copy/logo.coreimg.png/1712189728044/ki-tv-logos-colour-370.png"
-                alt="Kangan Institute"
-                className="h-14 w-auto object-contain mx-auto"
-                onClick={(e) => e.stopPropagation()}
-              />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 
       </div>
-
-
     </div>
   );
 }
