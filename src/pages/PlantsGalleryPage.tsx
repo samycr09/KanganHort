@@ -53,6 +53,21 @@ export function PlantsGalleryPage() {
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-12">
+        {/* Featured plant link#################### */}
+        <div className="mb-8">
+          <h2 className="text-2xl mb-4">Featured Plant</h2>
+          <Link to="/plants/everlasting-daisy" className="block bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition-all">
+            <div className="flex items-center gap-4">
+              <div className="p-4 bg-green-50 rounded-lg">
+                <Leaf className="w-12 h-12 text-green-700" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold">Everlasting Daisy</h3>
+                <p className="text-sm text-gray-600">A detailed page about the Everlasting Daisy.</p>
+              </div>
+            </div>
+          </Link>
+        </div>
         {/* Filters */}
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
           <div className="grid md:grid-cols-2 gap-4">

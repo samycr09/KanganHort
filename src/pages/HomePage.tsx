@@ -66,7 +66,7 @@ export function HomePage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <h1 className="text-5xl mb-4">Kangan TAFE Horticulture</h1>
+            <h1 className="text-5xl mb-4">Bendigo TAFE Horticulture</h1>
             <p className="text-lg mb-8 max-w-3xl mx-auto opacity-90">
               Explore our comprehensive plant collection featuring detailed botanical information, indigenous seasonal
               classifications, and interactive QR codes.
