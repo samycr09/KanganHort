@@ -14,8 +14,11 @@ import { ContactPage } from './pages/ContactPage';
 import { AboutPage } from './pages/AboutPage';
 import { UserProfilePage } from './pages/UserProfilePage';
 import { LogsPage } from './pages/LogsPage';
+// C:/Users/kym/react-vite-Hort2.6/src/App.tsx
+import { PlantPage } from "./pages/plants/PlantPage";
 
-
+//import PlantBioTemplate from "./pages/plants/PlantBioTemplate";
+// stray Routes snippet removed
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
   
@@ -51,8 +54,11 @@ function App() {
             {/* Public routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/plants" element={<PlantsGalleryPage />} />
+            // C:/Users/kym/react-vite-Hort2.6/src/App.tsx
+            <Route path="/plant/:id" element={<PlantPage />} /> 
             <Route path="/plant/:id" element={<PlantBioDisplayPage />} />
             <Route path="/contact" element={<ContactPage />} />
+
             <Route path="/about" element={<AboutPage />} />
             <Route path="/login" element={<LoginPage />} />
             

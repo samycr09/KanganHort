@@ -172,7 +172,7 @@ export const mockPlants: PlantBio[] = [];
 // Storage helpers
 export function getPlants(): PlantBio[] {
   const stored = localStorage.getItem('plants');
-  return stored ? JSON.parse(stored) : mockPlants;
+  return stored ? JSON.parse(stored) : demoPlants;
 }
 
 export function savePlant(plant: PlantBio): void {
@@ -196,16 +196,17 @@ export function deletePlant(id: string): void {
 export function getPlantById(id: string): PlantBio | undefined {
   return getPlants().find(p => p.id === id);
 }
+// ################ EDIT HERE ##############################
 
 export const demoPlants: PlantBio[] = [
   {
-    id: "PLANT-001",
+    id: "1",
     family: "Haemodoraceae",
     botanicalName: "Anigozanthos manglesii",
     commonName: "Kangaroo Paw",
     habitGrowthCharacteristics: "Perennial herb with upright flowering stems",
     lifeCycle: "Perennial",
-    identifyingCharacteristics: "Distinctive tubular flowers resembling a kangaroo paw",
+    identifyingCharacteristics: "Distinctive fuzzy tubular flowers resembling a kangaroo paw; fan shaped leaf clumps",
     leavesStemsMemristems:
       "Leaves: Linear, sword-shaped\nStem: Unbranched flowering stems\nMeristems: Apical for flowers, basal for leaf growth",
     flowers: "Tubular red and green flowers covered in fine hairs",
@@ -225,240 +226,48 @@ export const demoPlants: PlantBio[] = [
     ethnobotanicalInformationUses: "Cultural seasonal indicator",
     indigenousSeason: "Poorneet",
     images: [
-      "/assets/kangaroo-paw.jpg"
+      "/assets/plant-1.jpg"
     ],
     studentId: "demo",
-    studentName: "Kangan Student",
+    studentName: "Student",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
-    qrCode: "PLANT-001"
+    qrCode: "/plant/1"
   },
-  // Repeat for PLANT-002 ... PLANT-005 (same structure)
-  {
-    id: "PLANT-002",
-    family: "Proteaceae",
-    botanicalName: "Telopea speciosissima",
-    commonName: "Waratah",
-    habitGrowthCharacteristics: "",
-    lifeCycle: "",
-    identifyingCharacteristics: "",
+  // Repeat for plant/2 to plant-17(same structure)
+ {
+   id: "2",
+    family: "Asteraceae",
+    botanicalName: "Chrysocephalum apiculatum ",
+    commonName: "Everlasting Daisy flowering ",
+    habitGrowthCharacteristics: "Low, spreading perennial groundcover",
+    lifeCycle: "Perennial",
+    identifyingCharacteristics: "Silver grey foliage; clusters of bright yellow button flowers",
     leavesStemsMemristems:
-      "Leaves: Oblong to lanceolate, dark green, leathery, 10–20cm long\n" +
-      "Stem: Woody, upright, branching\n" +
-      "Meristems: Terminal meristems produce large flower heads",
-    flowers:
-      "Large red dome-shaped head, 10–15cm diameter, surrounded by red bracts",
-    floweringTimeSeason: "Guling to Poorneet (August - October)",
-    fruitSeed: "Woody follicle containing winged seeds",
-    seedCollectionTimeSeason: "Garrawang to Biderap (December - February)",
-    additionalPropagationRequirements:
-      "Cuttings from semi-hardwood in autumn, grafting onto hardy rootstock recommended",
-    trunk: "Multi-stemmed shrub, woody at base",
-    rootSystem: "Deep taproot with lateral roots",
-    vascularSystem: "Ring of vascular bundles in stem (dicot)",
-    additionalInformation:
-      "New South Wales floral emblem. Spectacular spring display. Prefers acidic, well-drained soil and part shade.",
+      "Narrow, soft, silvery leaves; stems trailing and rooting at nodes",
+    flowers: "Papery yellow flower heads",
+    floweringTimeSeason: "",
+    fruitSeed: "Small dry achenes",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "",
+    rootSystem: "Fibrous, shallow",
+    vascularSystem: "Adapted to drought; efficient water retention",
+    additionalInformation: "",
     spottingCharacteristics: "",
     familyLevel: "",
-    culturalInformationAndUses: "",
+    culturalInformationAndUses: "Excellent for native gardens, borders, habitat plantings; attracts pollinators.",
     references: "",
     horticulturalLandscapeInfo: "",
-    ethnobotanicalInformationUses: "",
-    indigenousSeason: "Guling",
-    images: ["https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800"],
-    studentId: "",
-    studentName: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-2.jpg"
+    ],
+    studentId: "demo",
+    studentName: "Student",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
-    qrCode: "PLANT-002",
-  },
-  {
-    id: "PLANT-003",
-    family: "Fabaceae",
-    botanicalName: "Acacia dealbata",
-    commonName: "Silver Wattle",
-    habitGrowthCharacteristics: "",
-    lifeCycle: "",
-    identifyingCharacteristics: "",
-    leavesStemsMemristems:
-      "Leaves: Bipinnate, feathery, silver-grey, compound with small leaflets\n" +
-      "Stem: Smooth, grey-green when young, becoming fissured with age\n" +
-      "Meristems: Lateral and terminal meristems produce numerous flower clusters",
-    flowers: "Globular bright yellow flower heads in large sprays",
-    floweringTimeSeason: "Waring to Guling (June - August)",
-    fruitSeed: "Flat brown pods, 4–10cm long",
-    seedCollectionTimeSeason: "Poorneet to Buarth Gurru (October - November)",
-    additionalPropagationRequirements:
-      "Scarified seeds sown in spring, can also use cuttings",
-    trunk: "Single or multi-trunked, can reach 20–30m height",
-    rootSystem: "Extensive root system, nitrogen-fixing nodules",
-    vascularSystem: "Secondary growth with distinct xylem and phloem layers",
-    additionalInformation:
-      "Fast-growing pioneer species. Nitrogen fixer improves soil. Can become invasive outside native range.",
-    spottingCharacteristics: "",
-    familyLevel: "",
-    culturalInformationAndUses: "",
-    references: "",
-    horticulturalLandscapeInfo: "",
-    ethnobotanicalInformationUses: "",
-    indigenousSeason: "Waring",
-    images: ["https://images.unsplash.com/photo-1615671524827-c1fe3973b648?w=800"],
-    studentId: "",
-    studentName: "",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    qrCode: "PLANT-003",
-  },
-  {
-    id: "PLANT-004",
-    family: "Proteaceae",
-    botanicalName: "Banksia integrifolia",
-    commonName: "Banksia",
-    habitGrowthCharacteristics: "",
-    lifeCycle: "",
-    identifyingCharacteristics: "",
-    leavesStemsMemristems:
-      "Leaves: Linear to oblong, dark green above, white-silver underneath, 4–20cm long\n" +
-      "Stem: Woody, grey bark becoming rough with age\n" +
-      "Meristems: Terminal meristems produce characteristic flower spikes",
-    flowers: "Cylindrical pale yellow flower spike, 5–15cm long",
-    floweringTimeSeason: "Luk to Buarth Gurru (March - November)",
-    fruitSeed:
-      "Woody follicles embedded in cone, release seeds after fire",
-    seedCollectionTimeSeason: "Year-round, fire-triggered release",
-    additionalPropagationRequirements:
-      "Seed after heat treatment or smoke water, cuttings difficult",
-    trunk: "Single trunk, can grow 5–25m tall",
-    rootSystem:
-      "Deep root system with proteoid roots for nutrient uptake",
-    vascularSystem: "Well-developed secondary vascular tissue",
-    additionalInformation:
-      "Important food source for nectar-feeding birds and insects. Fire-adapted species with serotinous seed release.",
-    spottingCharacteristics: "",
-    familyLevel: "",
-    culturalInformationAndUses: "",
-    references: "",
-    horticulturalLandscapeInfo: "",
-    ethnobotanicalInformationUses: "",
-    indigenousSeason: "Luk",
-    images: ["https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=800"],
-    studentId: "",
-    studentName: "",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    qrCode: "PLANT-004",
-  },
-  {
-    id: "PLANT-005",
-    family: "Myrtaceae",
-    botanicalName: "Callistemon citrinus",
-    commonName: "Bottlebrush",
-    habitGrowthCharacteristics: "",
-    lifeCycle: "",
-    identifyingCharacteristics: "",
-    leavesStemsMemristems:
-      "Leaves: Linear to narrow-lanceolate, aromatic when crushed, 3–7cm long\n" +
-      "Stem: Woody, papery bark peeling in strips\n" +
-      "Meristems: Terminal meristems produce bottlebrush-like flower spikes",
-    flowers:
-      "Red cylindrical spike with prominent stamens, 5–10cm long",
-    floweringTimeSeason: "Poorneet to Biderap (September - February)",
-    fruitSeed: "Woody capsules persist on stems for years",
-    seedCollectionTimeSeason: "Garrawang onwards (December+)",
-    additionalPropagationRequirements:
-      "Semi-hardwood cuttings in autumn, seed germination easy but slow",
-    trunk: "Multi-stemmed shrub or small tree",
-    rootSystem: "Fibrous root system, moderately deep",
-    vascularSystem: "Typical dicot vascular arrangement with cambium",
-    additionalInformation:
-      "Highly attractive to honeyeaters and lorikeets. Tolerates waterlogging and frost. Popular ornamental plant.",
-    spottingCharacteristics: "",
-    familyLevel: "",
-    culturalInformationAndUses: "",
-    references: "",
-    horticulturalLandscapeInfo: "",
-    ethnobotanicalInformationUses: "",
-    indigenousSeason: "Poorneet",
-    images: ["https://images.unsplash.com/photo-1566281796817-93bc94d7dbd2?w=800"],
-    studentId: "",
-    studentName: "",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    qrCode: "PLANT-005",
-  },
+    qrCode: "/plant/2"
+  }, 
 ];
-/*
-  {
-    plantId: 'PLANT-002',
-    commonName: 'Waratah',
-    botanicalName: 'Telopea speciosissima',
-    imageUrl: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800',
-    leaves: 'Oblong to lanceolate, dark green, leathery, 10-20cm long',
-    stem: 'Woody, upright, branching',
-    meristems: 'Terminal meristems produce large flower heads',
-    flower: 'Large red dome-shaped head, 10-15cm diameter, surrounded by red bracts',
-    flowerSeason: 'Guling to Poorneet (August - October)',
-    fruitSeed: 'Woody follicle containing winged seeds',
-    fruitSeedSeason: 'Garrawang to Biderap (December - February)',
-    trunk: 'Multi-stemmed shrub, woody at base',
-    rootSystem: 'Deep taproot with lateral roots',
-    vascularSystem: 'Ring of vascular bundles in stem (dicot)',
-    propagationRequired: 'Cuttings from semi-hardwood in autumn, grafting onto hardy rootstock recommended',
-    additionalComment: 'New South Wales floral emblem. Spectacular spring display. Prefers acidic, well-drained soil and part shade.'
-  },
-  {
-    plantId: 'PLANT-003',
-    commonName: 'Silver Wattle',
-    botanicalName: 'Acacia dealbata',
-    imageUrl: 'https://images.unsplash.com/photo-1615671524827-c1fe3973b648?w=800',
-    leaves: 'Bipinnate, feathery, silver-grey, compound with small leaflets',
-    stem: 'Smooth, grey-green when young, becoming fissured with age',
-    meristems: 'Lateral and terminal meristems produce numerous flower clusters',
-    flower: 'Globular bright yellow flower heads in large sprays',
-    flowerSeason: 'Waring to Guling (June - August)',
-    fruitSeed: 'Flat brown pods, 4-10cm long',
-    fruitSeedSeason: 'Poorneet to Buarth Gurru (October - November)',
-    trunk: 'Single or multi-trunked, can reach 20-30m height',
-    rootSystem: 'Extensive root system, nitrogen-fixing nodules',
-    vascularSystem: 'Secondary growth with distinct xylem and phloem layers',
-    propagationRequired: 'Scarified seeds sown in spring, can also use cuttings',
-    additionalComment: 'Fast-growing pioneer species. Nitrogen fixer improves soil. Can become invasive outside native range.'
-  },
-  {
-    plantId: 'PLANT-004',
-    commonName: 'Banksia',
-    botanicalName: 'Banksia integrifolia',
-    imageUrl: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=800',
-    leaves: 'Linear to oblong, dark green above, white-silver underneath, 4-20cm long',
-    stem: 'Woody, grey bark becoming rough with age',
-    meristems: 'Terminal meristems produce characteristic flower spikes',
-    flower: 'Cylindrical pale yellow flower spike, 5-15cm long',
-    flowerSeason: 'Luk to Buarth Gurru (March - November)',
-    fruitSeed: 'Woody follicles embedded in cone, release seeds after fire',
-    fruitSeedSeason: 'Year-round, fire-triggered release',
-    trunk: 'Single trunk, can grow 5-25m tall',
-    rootSystem: 'Deep root system with proteoid roots for nutrient uptake',
-    vascularSystem: 'Well-developed secondary vascular tissue',
-    propagationRequired: 'Seed after heat treatment or smoke water, cuttings difficult',
-    additionalComment: 'Important food source for nectar-feeding birds and insects. Fire-adapted species with serotinous seed release.'
-  },
-  {
-    plantId: 'PLANT-005',
-    commonName: 'Bottlebrush',
-    botanicalName: 'Callistemon citrinus',
-    imageUrl: 'https://images.unsplash.com/photo-1566281796817-93bc94d7dbd2?w=800',
-    leaves: 'Linear to narrow-lanceolate, aromatic when crushed, 3-7cm long',
-    stem: 'Woody, papery bark peeling in strips',
-    meristems: 'Terminal meristems produce bottlebrush-like flower spikes',
-    flower: 'Red cylindrical spike with prominent stamens, 5-10cm long',
-    flowerSeason: 'Poorneet to Biderap (September - February)',
-    fruitSeed: 'Woody capsules persist on stems for years',
-    fruitSeedSeason: 'Garrawang onwards (December+)',
-    trunk: 'Multi-stemmed shrub or small tree',
-    rootSystem: 'Fibrous root system, moderately deep',
-    vascularSystem: 'Typical dicot vascular arrangement with cambium',
-    propagationRequired: 'Semi-hardwood cuttings in autumn, seed germination easy but slow',
-    additionalComment: 'Highly attractive to honeyeaters and lorikeets. Tolerates waterlogging and frost. Popular ornamental plant.'
-  }
-*/
-

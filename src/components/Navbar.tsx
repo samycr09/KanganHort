@@ -12,6 +12,7 @@ export function Navbar() {
 
   const publicLinks = [
     { path: '/', label: 'Home', icon: Home },
+    { path: '/plants/everlasting-daisy', label: 'Everlasting Daisy' },
     { path: '/about', label: 'About', icon: Info },
     { path: '/contact', label: 'Contact', icon: Phone }
   ];
@@ -72,7 +73,7 @@ export function Navbar() {
                       : 'text-gray-700 hover:bg-green-50 hover:text-green-700'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  {Icon && <Icon className="w-4 h-4" />}
                   <span>{link.label}</span>
                 </Link>
               );
@@ -150,7 +151,7 @@ export function Navbar() {
                         : 'text-gray-700 hover:bg-gray-100'
                     }`}
                   >
-                    <Icon className="w-5 h-5" />
+                    {Icon && <Icon className="w-5 h-5" />}
                     {link.label}
                   </Link>
                 );

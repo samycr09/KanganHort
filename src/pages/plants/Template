@@ -1,0 +1,39 @@
+{/*}
+
+{
+    id: "plant/1",
+    family: "",
+    botanicalName: "",
+    commonName: "",
+    habitGrowthCharacteristics: "",
+    lifeCycle: "Perennial",
+    identifyingCharacteristics: "",
+    leavesStemsMemristems:
+      "",
+    flowers: "",
+    floweringTimeSeason: "",
+    fruitSeed: "",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "",
+    rootSystem: "",
+    vascularSystem: "",
+    additionalInformation: "",
+    spottingCharacteristics: "",
+    familyLevel: "",
+    culturalInformationAndUses: "",
+    references: "",
+    horticulturalLandscapeInfo: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-1.jpg"
+    ],
+    studentId: "demo",
+    studentName: "Student",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    qrCode: "plant/1"
+  },
+
+  */}

@@ -115,6 +115,11 @@ export function PlantBioDisplayPage() {
             <div className="p-4 bg-white/20 rounded-2xl backdrop-blur-sm">
               <Leaf className="w-16 h-16" />
             </div>
+            {heroSrc && (
+              <div className="hidden lg:block w-48 h-48 rounded-2xl overflow-hidden shadow-xl">
+                <img src={heroSrc} alt={`${plant.commonName} cover`} className="w-full h-full object-cover" />
+              </div>
+            )}
             <div className="flex-1">
               <h1 className="text-white mb-3">{plant.commonName}</h1>
               {plant.featured && (
@@ -201,7 +206,7 @@ export function PlantBioDisplayPage() {
               </div>
             </div>
           )}
-
+//
           {/* Identifying Characteristics */}
           <div className="relative rounded-2xl shadow-lg p-8 overflow-hidden">
             {identifyingBg && (
