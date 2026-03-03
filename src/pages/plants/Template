@@ -1,7 +1,7 @@
 {/*}
 
 {
-    id: "plant/1",
+    id: "1",
     family: "",
     botanicalName: "",
     commonName: "",
@@ -32,7 +32,7 @@
     studentId: "demo",
     studentName: "Student",
     createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(), 
     qrCode: "plant/1"
   },
 

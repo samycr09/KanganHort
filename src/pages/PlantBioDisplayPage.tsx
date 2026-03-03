@@ -4,6 +4,7 @@ import { getPlantById, getPlants, indigenousSeasons } from '../data/PlantData';
 import type { PlantBio } from '../data/PlantData';
 import { addLog } from '../data/LogsData';
 import { Leaf, Calendar, User, AlertCircle, Flower, Sprout, BookOpen, Globe } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 import { BackButton } from '../components/BackButton';
 
 export function PlantBioDisplayPage() {
@@ -11,22 +12,27 @@ export function PlantBioDisplayPage() {
   const [plant, setPlant] = useState<PlantBio | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const { user } = useAuth();
+
   useEffect(() => {
     if (id) {
       const foundPlant = getPlantById(id);
       setPlant(foundPlant || null);
       setLoading(false);
 
-      if (foundPlant) {
+      // Only record detailed logs for authenticated users (avoid public QR scan logs)
+      if (foundPlant && user) {
         addLog({ 
           action: 'plant_view', 
           page: 'plant_display',
           plantId: foundPlant.id,
-          plantName: foundPlant.commonName
+          plantName: foundPlant.commonName,
+          userId: user.id,
+          userName: user.name
         });
       }
     }
-  }, [id]);
+  }, [id, user]);
 
   if (loading) {
     return (
