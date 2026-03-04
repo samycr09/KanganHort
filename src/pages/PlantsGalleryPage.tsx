@@ -150,7 +150,7 @@ export function PlantsGalleryPage() {
                   </div>
                   
                   <p className="text-gray-500 text-sm">
-                    Documented by {plant.studentName}
+                   {/* Documented by {plant.studentName} */}
                   </p>
                 </div>
               </Link>

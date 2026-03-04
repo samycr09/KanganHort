@@ -27,7 +27,7 @@ function safeStr(v: unknown): string {
 }
 
 function normalizePlantBio(p: PlantBio): PlantBio {
-  const now = new Date().toISOString();
+  //const now = new Date().toISOString();
   return {
     id: safeStr(p.id) || "plant/1",
     family: safeStr(p.family),
@@ -56,10 +56,10 @@ function normalizePlantBio(p: PlantBio): PlantBio {
     images: Array.isArray(p.images) ? p.images : [],
     coverImage: safeStr(p.coverImage),
     featured: !!p.featured,
-    studentId: safeStr(p.studentId),
+    /*studentId: safeStr(p.studentId),
     studentName: safeStr(p.studentName),
     createdAt: safeStr(p.createdAt) || now,
-    updatedAt: safeStr(p.updatedAt) || now,
+    updatedAt: safeStr(p.updatedAt) || now,*/
     qrCode: safeStr(p.qrCode) || safeStr(p.id) || "plant/1",
   };
 }
@@ -247,10 +247,10 @@ export function PlantPage() {
           <Field label="Ethnobotanical Information / Uses" value={plant.ethnobotanicalInformationUses} />
 
           <Field label="Indigenous Season" value={plant.indigenousSeason} />
-          <Field label="Student" value={`${plant.studentName}${plant.studentId ? ` (${plant.studentId})` : ""}`.trim()} />
+          {/* <Field label="Student" value={`${plant.studentName}${plant.studentId ? ` (${plant.studentId})` : ""}`.trim()} /> 
 
           <Field label="Created At" value={plant.createdAt} />
-          <Field label="Updated At" value={plant.updatedAt} />
+          <Field label="Updated At" value={plant.updatedAt} /> */}
         </div>
       </div>
     </div>

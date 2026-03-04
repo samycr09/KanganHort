@@ -37,10 +37,10 @@ export interface PlantBio {
   images: string[];
   coverImage?: string;
   featured?: boolean;
-  studentId: string;
+/*  studentId: string;
   studentName: string;
   createdAt: string;
-  updatedAt: string;
+  updatedAt: string;*/
   qrCode: string;
 }
 
@@ -228,10 +228,6 @@ export const demoPlants: PlantBio[] = [
     images: [
       "/assets/plant-1.jpg"
     ],
-    studentId: "demo",
-    studentName: "Student",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
     qrCode: "/plant/1"
   },
   // Repeat for plant/2 to plant-17(same structure)
@@ -264,10 +260,6 @@ export const demoPlants: PlantBio[] = [
     images: [
       "/assets/plant-2.jpg"
     ],
-    studentId: "demo",
-    studentName: "Student",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
     qrCode: "/plant/2"
   }, 
 {
@@ -299,10 +291,6 @@ export const demoPlants: PlantBio[] = [
     images: [
       "/assets/plant-3.jpg"
     ],
-    studentId: "demo",
-    studentName: "Student",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(), 
     qrCode: "plant/3"
   },
   {
@@ -334,10 +322,6 @@ export const demoPlants: PlantBio[] = [
     images: [
       "/assets/plant-4.jpg"
     ],
-    studentId: "demo",
-    studentName: "Student",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
     qrCode: "plant/4"
   },
 {
@@ -368,11 +352,380 @@ export const demoPlants: PlantBio[] = [
     indigenousSeason: "",
     images: [
       "/assets/plant-5.jpg"
-    ],
-    studentId: "demo",
-    studentName: "Student",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(), 
+      ],
     qrCode: "plant/5"
   },
+{
+    id: "6",
+    family: " Lamiaceae",
+    botanicalName: "Mentha spicata ",
+    commonName: "Common Mint ",
+    habitGrowthCharacteristics: "Spearmint aroma; square stems; bright green leaves",
+    lifeCycle: "Perennial",
+    identifyingCharacteristics: "",
+    leavesStemsMemristems:
+      "Opposite leaves; square stems; meristems at nodes allow rapid spread",
+    flowers: "Pale lilac spikes",
+    floweringTimeSeason: "",
+    fruitSeed: "Tiny nutlets; rarely used for propagation",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "None",
+    rootSystem: "Rhizomatous, fast spreading",
+    vascularSystem: "Typical Lamiaceae square stem vascular arrangement",
+    additionalInformation: "",
+    spottingCharacteristics: "",
+    familyLevel: "",
+    culturalInformationAndUses: "Culinary herb; prefers moist soils; best grown in pots to contain spread",
+    references: "",
+    horticulturalLandscapeInfo: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-6.jpg"
+    ],
+    qrCode: "plant/6"
+  },
+{
+    id: "7",
+    family: " Lamiaceae",
+    botanicalName: "Oncimum basilicum ",
+    commonName: "Sweet Basil ",
+    habitGrowthCharacteristics: "Soft annual herb",
+    lifeCycle: "Annual",
+    identifyingCharacteristics: "Strong aromatic leaves; soft green stems",
+    leavesStemsMemristems:
+      "Opposite leaves; square stems; apical meristem pinching encourages bushiness",
+    flowers: "White to pale pink spikes",
+    floweringTimeSeason: "",
+    fruitSeed: "Small black seeds",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "None",
+    rootSystem: "Fibrous, shallow",
+    vascularSystem: "Typical herbaceous Lamiaceae structure",
+    additionalInformation: "",
+    spottingCharacteristics: "",
+    familyLevel: "",
+    culturalInformationAndUses: "Culinary herb; prefers warmth, full sun, and regular feeding",
+    references: "",
+    horticulturalLandscapeInfo: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-7.jpg"
+    ],
+    qrCode: "plant/7"
+  },
+{
+    id: "8",
+    family: "Bignoniaceae",
+    botanicalName: "Pandorea pandorana ",
+    commonName: "Wonga wonga ",
+    habitGrowthCharacteristics: "Glossy pinnate leaves; tubular cream flowers with maroon throat",
+    lifeCycle: "Perennial",
+    identifyingCharacteristics: "",
+    leavesStemsMemristems:
+      "Opposite pinnate leaves; twining stems; meristems at nodes",
+    flowers: "Bell shaped clusters; fragrant",
+    floweringTimeSeason: "",
+    fruitSeed: "Woody capsules with winged seeds",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "Woody vine stems",
+    rootSystem: "Deep, strong; drought tolerant",
+    vascularSystem: "Woody climber vascular bundles; efficient water transport",
+    additionalInformation: "",
+    spottingCharacteristics: "",
+    familyLevel: "",
+    culturalInformationAndUses: "Excellent for arches and arbours; fast growing; attracts birds and insects.",
+    references: "",
+    horticulturalLandscapeInfo: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-8.jpg"
+    ],
+    qrCode: "plant/8"
+  },
+{
+    id: "9",
+    family: "Apiaceae",
+    botanicalName: "Petroselinum crispum ",
+    commonName: "Curly Leaf Parsley",
+    habitGrowthCharacteristics: "Rosette herb",
+    lifeCycle: "Biennial (grown as annual)",
+    identifyingCharacteristics: "Tight curled leaves; aromatic",
+    leavesStemsMemristems:
+      "Basal rosette; meristem at crown",
+    flowers: "Umbels of small yellow green flowers (2nd year)",
+    floweringTimeSeason: "",
+    fruitSeed: "Small ribbed seeds",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "None",
+    rootSystem: "Taproot",
+    vascularSystem: "Herbaceous.",
+    additionalInformation: "",
+    spottingCharacteristics: "",
+    familyLevel: "",
+    culturalInformationAndUses: "Culinary herb; prefers rich, moist soil",
+    references: "",
+    horticulturalLandscapeInfo: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-9.jpg"
+    ],
+    qrCode: "plant/9"
+  },
+{
+    id: "10",
+    family: "Apiaceae",
+    botanicalName: "Petroselinum crispum var. neapolitanum",
+    commonName: "Flat leaf Parsley",
+    habitGrowthCharacteristics: "Upright rosette herb",
+    lifeCycle: "Biennial (grown as annual)",
+    identifyingCharacteristics: "Flat, deeply divided leaves; stronger flavour",
+    leavesStemsMemristems:
+      "Basal meristem; upright stems",
+    flowers: "Yellow green umbels",
+    floweringTimeSeason: "",
+    fruitSeed: "Ribbed seeds",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "None",
+    rootSystem: "Taproot",
+    vascularSystem: "Herbaceous.",
+    additionalInformation: "",
+    spottingCharacteristics: "",
+    familyLevel: "",
+    culturalInformationAndUses: "Culinary herb; preferred for cooking due to stronger flavour",
+    references: "",
+    horticulturalLandscapeInfo: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-10.jpg"
+    ],
+    qrCode: "plant/10"
+  },
+{
+    id: "11",
+    family: "Lamiaceae",
+    botanicalName: "Prostanthera rotundifolia ",
+    commonName: "Roundleaf Mint Bush",
+    habitGrowthCharacteristics: "",
+    lifeCycle: "Perennial",
+    identifyingCharacteristics: "Round leaves; strong mint aroma; masses of purple flowers",
+    leavesStemsMemristems:
+      "Opposite leaves; square stems; meristems at nodes",
+    flowers: "Purple tubular flowers in spring",
+    floweringTimeSeason: "",
+    fruitSeed: "Small nutlets",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "Woody base",
+    rootSystem: "Fibrous; prefers good drainage",
+    vascularSystem: "Woody Lamiaceae structure",
+    additionalInformation: "",
+    spottingCharacteristics: "",
+    familyLevel: "",
+    culturalInformationAndUses: "Ornamental shrub; attracts pollinators; aromatic foliage",
+    references: "",
+    horticulturalLandscapeInfo: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-11.jpg"
+    ],
+    qrCode: "plant/11"
+  },
+{
+    id: "12",
+    family: "Asteraceae",
+    botanicalName: "Craspedia globosa",
+    commonName: "Billy Buttons",
+    habitGrowthCharacteristics: "Tufting perennial with upright flower stems",
+    lifeCycle: "Perennial",
+    identifyingCharacteristics: "Spherical yellow flower heads on long stems",
+    leavesStemsMemristems:
+      "Silvergreen basal leaves; stems slender",
+    flowers: "Globular composite heads",
+    floweringTimeSeason: "Small dry seeds",
+    fruitSeed: "",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "None",
+    rootSystem: "Fibrous",
+    vascularSystem: "Herbaceous",
+    additionalInformation: "",
+    spottingCharacteristics: "",
+    familyLevel: "",
+    culturalInformationAndUses: "Popular cut flower; drought tolerant; great in native plantings",
+    references: "",
+    horticulturalLandscapeInfo: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-12.jpg"
+    ],
+    qrCode: "plant/12"
+  },
+{
+    id: "13",
+    family: "Poaceae",
+    botanicalName: "Themeda triandra",
+    commonName: "Perennial grass",
+    habitGrowthCharacteristics: "Tufting perennial grass",
+    lifeCycle: "Perennial",
+    identifyingCharacteristics: "Arching leaves; reddishbrown seed heads",
+    leavesStemsMemristems:
+      "Narrow leaves; basal and intercalary meristems typical of grasses",
+    flowers: "Loose panicles with distinctive awns",
+    floweringTimeSeason: "Grain-like seeds",
+    fruitSeed: "",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "None",
+    rootSystem: "Deep fibrous roots",
+    vascularSystem: "Grass vascular bundles with C4 photosynthesis",
+    additionalInformation: "",
+    spottingCharacteristics: "",
+    familyLevel: "",
+    culturalInformationAndUses: "Important native grassland species; used in restoration and ornamental plantings",
+    references: "",
+    horticulturalLandscapeInfo: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-13.jpg"
+    ],
+    qrCode: "plant/13"
+  },
+{
+    id: "14",
+    family: "Lamiaceae",
+    botanicalName: "Salvia officinalis",
+    commonName: "Sage",
+    habitGrowthCharacteristics: "Small woody perennial herb",
+    lifeCycle: "Perennial",
+    identifyingCharacteristics: "Greygreen textured leaves; aromatic",
+    leavesStemsMemristems:
+      "Opposite leaves; square stems; woody base",
+    flowers: "Purpleblue spikes",
+    floweringTimeSeason: "",
+    fruitSeed: "Nutlets",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "Woody lower stems",
+    rootSystem: "Fibrous",
+    vascularSystem: "Woody herbaceous",
+    additionalInformation: "",
+    spottingCharacteristics: "",
+    familyLevel: "",
+    culturalInformationAndUses: "Culinary herb; medicinal uses; prefers dry, sunny conditions",
+    references: "",
+    horticulturalLandscapeInfo: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-14.jpg"
+    ],
+    qrCode: "plant/14"
+  },
+{
+    id: "15",
+    family: "Lamiaceae",
+    botanicalName: "Salvia rosmarinus",
+    commonName: "Rosemary",
+    habitGrowthCharacteristics: "Woody shrub",
+    lifeCycle: "Perennial",
+    identifyingCharacteristics: "Needlelike aromatic leaves; upright or trailing forms",
+    leavesStemsMemristems:
+      "Opposite leaves; woody stems; apical dominance strong",
+    flowers: "Blue to white small flowers",
+    floweringTimeSeason: "",
+    fruitSeed: "Nutlets",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "",
+    rootSystem: "Deep, woody roots",
+    vascularSystem: "Woody Lamiaceae",
+    additionalInformation: "",
+    spottingCharacteristics: "",
+    familyLevel: "",
+    culturalInformationAndUses: "Culinary herb; drought tolerant; used in hedging",
+    references: "",
+    horticulturalLandscapeInfo: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-15.jpg"
+    ],
+    qrCode: "plant/15"
+  },
+{
+    id: "16",
+    family: "Lamiaceae",
+    botanicalName: "Thymus serpyllum",
+    commonName: "Culinary Thyme",
+    habitGrowthCharacteristics: "Low matforming groundcover",
+    lifeCycle: "Perennial",
+    identifyingCharacteristics: "Tiny aromatic leaves; creeping stems",
+    leavesStemsMemristems:
+      "Opposite leaves; square stems; rooting at nodes",
+    flowers: "Pinkpurple clusters",
+    floweringTimeSeason: "",
+    fruitSeed: "Nutlets",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "None",
+    rootSystem: "Shallow, fibrous",
+    vascularSystem: "Herbaceous",
+    additionalInformation: "",
+    spottingCharacteristics: "",
+    familyLevel: "",
+    culturalInformationAndUses: "Culinary and ornamental; great between pavers; attracts bees",
+    references: "",
+    horticulturalLandscapeInfo: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-16.jpg"
+    ],
+    qrCode: "plant/16"
+  },
+{
+    id: "17",
+    family: "Violaceae",
+    botanicalName: "Viola hederacea",
+    commonName: "Native Violet",
+    habitGrowthCharacteristics: "Spreading groundcover",
+    lifeCycle: "Perennial",
+    identifyingCharacteristics: "Heartshaped leaves; purplewhite flowers",
+    leavesStemsMemristems:
+      "Soft leaves; creeping stems; meristems at nodes",
+    flowers: "Small violetlike blooms",
+    floweringTimeSeason: "",
+    fruitSeed: "Capsules with small seeds",
+    seedCollectionTimeSeason: "",
+    additionalPropagationRequirements: "",
+    trunk: "None",
+    rootSystem: "Fibrous, shallow",
+    vascularSystem: "Herbaceous",
+    additionalInformation: "",
+    spottingCharacteristics: "",
+    familyLevel: "",
+    culturalInformationAndUses: "Shadetolerant groundcover; excellent for understory plantings",
+    references: "",
+    horticulturalLandscapeInfo: "",
+    ethnobotanicalInformationUses: "C",
+    indigenousSeason: "",
+    images: [
+      "/assets/plant-17.jpg"
+    ],
+    qrCode: "plant/17"
+  },
+ 
 ];
