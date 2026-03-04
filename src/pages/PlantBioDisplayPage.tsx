@@ -297,7 +297,7 @@ export function PlantBioDisplayPage() {
               </div>
               <div>
                 <h3 className="text-gray-900">Documented By</h3>
-                <p className="text-gray-700">{plant.studentName}</p>
+               {/* <p className="text-gray-700">{plant.studentName}</p> */}
               </div>
             </div>
             <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-gray-200">
@@ -307,7 +307,7 @@ export function PlantBioDisplayPage() {
               </div>
               <div>
                 <div className="text-gray-600">Last Updated</div>
-                <div className="text-gray-900">{new Date(plant.updatedAt).toLocaleDateString()}</div>
+                {/* <div className="text-gray-900">{new Date(plant.updatedAt).toLocaleDateString()}</div> */}
               </div>
             </div>
           </div>

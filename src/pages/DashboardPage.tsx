@@ -18,7 +18,7 @@ export function DashboardPage() {
       setPlants(allPlants);
     } else {
       // Students only see their own plants
-      setPlants(allPlants.filter(p => p.studentId === user?.id));
+     // setPlants(allPlants.filter(p => p.studentId === user?.id));
     }
 
     addLog({ 
@@ -173,11 +173,11 @@ export function DashboardPage() {
                       {plant.indigenousSeason}
                     </span>
                   </div>
-                  {user?.role === 'admin' && (
+                  {/* {user?.role === 'admin' && (
                     <p className="text-gray-500 mb-4">
                       Student: {plant.studentName}
                     </p>
-                  )}
+                  )} */}
                   <div className="flex gap-2">
                     <Link
                       to={`/plant/${plant.id}`}
@@ -219,7 +219,7 @@ export function DashboardPage() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {students.map((student: any) => {
-                  const studentPlants = getPlants().filter(p => p.studentId === student.id);
+                  //const studentPlants = getPlants().filter(p => p.studentId === student.id);
                   return (
                     <div
                       key={student.id}
@@ -227,9 +227,9 @@ export function DashboardPage() {
                     >
                       <div className="text-gray-900 mb-1">{student.name}</div>
                       <div className="text-gray-500 mb-2">{student.email}</div>
-                      <div className="text-gray-600">
+                     {/* <div className="text-gray-600">
                         {studentPlants.length} plant{studentPlants.length !== 1 ? 's' : ''}
-                      </div>
+                      </div> */}
                     </div>
                   );
                 })}

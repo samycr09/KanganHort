@@ -12,7 +12,6 @@ export function Navbar() {
 
   const publicLinks = [
     { path: '/', label: 'Home', icon: Home },
-    { path: '/plants/everlasting-daisy', label: 'Everlasting Daisy' },
     { path: '/about', label: 'About', icon: Info },
     { path: '/contact', label: 'Contact', icon: Phone }
   ];
@@ -94,7 +93,7 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Right side - User section */}
+          {/* Right side - User section 
           <div className="hidden md:flex items-center flex-shrink-0">
             {user ? (
               <div className="flex items-center gap-3">
@@ -120,7 +119,7 @@ export function Navbar() {
               </Link>
             )}
           </div>
-
+  */}
           {/* Mobile menu button */}
           <button
             className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"

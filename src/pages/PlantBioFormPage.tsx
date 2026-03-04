@@ -64,10 +64,10 @@ export function PlantBioFormPage() {
     if (id) {
       const plant = getPlantById(id);
       if (plant) {
-        if (user?.role !== 'admin' && plant.studentId !== user?.id) {
+       {/*} if (user?.role !== 'admin' && plant.studentId !== user?.id) {
           navigate('/dashboard');
           return;
-        }
+        } */}
         
         setFormData({
           family: plant.family,
@@ -280,10 +280,10 @@ export function PlantBioFormPage() {
         images: imagesToSave,
         coverImage: selectedCover,
         featured: (user.role === 'admin') ? (!!formData.featured) : (existingPlant?.featured ?? true),
-        studentId: user.id,
-        studentName: user.name,
-        createdAt: id ? getPlantById(id)?.createdAt || new Date().toISOString() : new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
+        //studentId: user.id,
+        //studentName: user.name,
+        //createdAt: id ? getPlantById(id)?.createdAt || new Date().toISOString() : new Date().toISOString(),
+        //updatedAt: new Date().toISOString(),
         qrCode
       };
 
