@@ -1,10 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Menu, X, LogOut, User, Home, Info, Phone, } from 'lucide-react';
+import { Menu, X, /*LogOut, User,*/ Home, Info, Phone, } from 'lucide-react';
 import { useState } from 'react';
 
 export function Navbar() {
-  const { user, logout } = useAuth();
+  const { user/*, logout*/ } = useAuth();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -170,7 +170,7 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
-
+              {/*
               {user ? (
                 <div className="pt-3 border-t border-gray-200 mt-2">
                   <div className="px-4 py-2 text-gray-900">{user.name}</div>
@@ -195,8 +195,8 @@ export function Navbar() {
                   <User className="w-4 h-4" />
                   Login
                 </Link>
-              )}
-            </div>
+              )} */}
+            </div> 
           </div>
         )}
       </div>
