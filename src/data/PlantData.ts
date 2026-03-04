@@ -171,9 +171,7 @@ export const mockPlants: PlantBio[] = [];
 
 // Storage helpers
 export function getPlants(): PlantBio[] {
-  const stored = localStorage.getItem('plants');
-  return stored ? JSON.parse(stored) : demoPlants;
-}
+return demoPlants;}
 
 export function savePlant(plant: PlantBio): void {
   const plants = getPlants();
